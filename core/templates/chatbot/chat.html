@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card shadow p-4">
+    <h4>🤖 Health Assistant</h4>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="message" class="form-control mb-3" placeholder="Ask something...">
+        <button class="btn btn-primary">Send</button>
+    </form>
+
+    {% if response %}
+        <div class="alert alert-success mt-3">
+            <strong>Bot:</strong> {{ response }}
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}

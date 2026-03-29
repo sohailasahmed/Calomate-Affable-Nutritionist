@@ -20,8 +20,13 @@ from users.views import register
 from chatbot.views import chat
 from diet.views import add_meal, dashboard
 
+def home(request):
+    from django.shortcuts import render
+    return render(request, 'home.html')
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',home),
     path('register/', register, name='register'),
     path('chat/', chat, name='chat'),
     path('add-meal/', add_meal, name='add_meal'),

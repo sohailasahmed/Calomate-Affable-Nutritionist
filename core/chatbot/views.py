@@ -1,7 +1,7 @@
 import requests
 from django.shortcuts import render
 
-API_KEY = "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"
+API_KEY = "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"
 
 def chat(request):
     response_text = ""
