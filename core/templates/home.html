@@ -4,48 +4,45 @@
 
 <div class="row">
 
-    <!-- Calories Card -->
     <div class="col-md-4">
-        <div class="card shadow p-3 mb-4 bg-white rounded">
+        <div class="card p-3 shadow">
             <h5>Total Calories</h5>
             <h2>{{ total_calories }}</h2>
         </div>
     </div>
 
-    <!-- Meals Card -->
     <div class="col-md-4">
-        <div class="card shadow p-3 mb-4 bg-white rounded">
+        <div class="card p-3 shadow">
             <h5>Meals Logged</h5>
             <h2>{{ meals_count }}</h2>
         </div>
     </div>
 
-    <!-- Chart -->
-    <div class="col-md-12">
-        <div class="card shadow p-3">
-            <h5>Calories Chart</h5>
+    <div class="col-md-12 mt-4">
+        <div class="card p-3 shadow">
             <canvas id="calorieChart"></canvas>
         </div>
     </div>
 
 </div>
 
-{% endblock %}
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
 const ctx = document.getElementById('calorieChart');
 
+const labels = JSON.parse('{{ labels|escapejs }}');
+const data = JSON.parse('{{ data|escapejs }}');
+
 new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["Mon", "Tue", "Wed"],
+        labels: labels,
         datasets: [{
             label: 'Calories',
-            data: [200, 300, 250],
+            data: data,
             borderWidth: 1
         }]
     }
 });
-</script>
+</script>{% endblock %}

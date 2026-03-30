@@ -19,10 +19,25 @@ from django.urls import path
 from users.views import register
 from chatbot.views import chat
 from diet.views import add_meal, dashboard
+import json
+from django.shortcuts import render
 
 def home(request):
+    labels = ["Mon", "Tue", "Wed", "Thu", "Fri"]
+    data = [200, 350, 300, 400, 250]
+
+    context = {
+        "labels": json.dumps(labels),
+        "data": json.dumps(data),
+        "total_calories": sum(data),
+        "meals_count": len(data)
+    }
+
+    return render(request, 'home.html', context)
+
+'''def home(request):
     from django.shortcuts import render
-    return render(request, 'home.html')
+    return render(request, 'home.html')'''
 
 urlpatterns = [
     path('admin/', admin.site.urls),
