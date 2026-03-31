@@ -1,6 +1,8 @@
 <h2>Dashboard</h2>
 
 <h3>Total Calories: {{ total_calories }}</h3>
+<h4>Limit: {{ limit }}</h4>
+<h4>Status: {{ status }}</h4>
 
 <table border="1">
     <tr>
@@ -14,13 +16,13 @@
         <td>{{ meal.food.name }}</td>
         <td>{{ meal.quantity }}</td>
         <td>{{ meal.total_calories }}</td>
-    </tr>
+    </tr>   
     {% endfor %}
 </table>
 
 <br>
 
-<a href="/add-meal/">Add Meal</a>
+<a href="{% url 'add_meal' %}">Add Meal</a>
 <a href="/chat/">Go to Chatbot</a>
 
 <hr>

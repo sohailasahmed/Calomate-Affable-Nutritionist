@@ -14,6 +14,8 @@ class Meal(models.Model):
     food = models.ForeignKey(Food, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     date = models.DateField(auto_now_add=True)
+    MEAL_TYPES=[('breakfast','Breakfast'),('lunch','Lunch'),('dinner','Dinner')]
+    meal_type=models.CharField(max_length=20,choices=MEAL_TYPES,default='breakfast')
 
     def total_calories(self):
         return self.food.calories * self.quantity

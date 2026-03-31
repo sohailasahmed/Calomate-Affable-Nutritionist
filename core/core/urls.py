@@ -19,20 +19,28 @@ from django.urls import path
 from users.views import register
 from django.contrib.auth import views as auth_views
 from chatbot.views import chat
-from diet.views import add_meal, dashboard
+from django.urls import include
+from diet.models import Meal
 import json
 from django.shortcuts import render
 
 def home(request):
-    labels = ["Mon", "Tue", "Wed", "Thu", "Fri"]
-    data = [200, 350, 300, 400, 250]
+    if request.user.is_authenticated:
+        meals=Meal.objects.filter(user=request.user)
+        labels=[]
+        data=[]
+        for meal in meals:
+            labels.append(meal.food.name)
+            data.append(meal.total_calories())
 
-    context = {
-        "labels": json.dumps(labels),
-        "data": json.dumps(data),
-        "total_calories": sum(data),
-        "meals_count": len(data)
-    }
+        context = {
+            "labels": json.dumps(labels),
+            "data": json.dumps(data),
+            "total_calories": sum(data),
+            "meals_count": len(data)
+        }
+    else:
+        context={}
 
     return render(request, 'home.html', context)
 
@@ -47,6 +55,5 @@ urlpatterns = [
     path('logout/',auth_views.LogoutView.as_view(),name='logout'),
     path('register/', register, name='register'),
     path('chat/', chat, name='chat'),
-    path('add-meal/', add_meal, name='add_meal'),
-    path('dashboard/', dashboard, name='dashboard'),
+    path('diet/',include('diet.urls')),
 ]

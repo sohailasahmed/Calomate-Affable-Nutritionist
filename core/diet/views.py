@@ -32,7 +32,14 @@ def dashboard(request):
         food_names.append(meal.food.name)
         calories.append(cal)
 
+    limit = 2000
+    status = "Normal"
+    if total_calories>limit:
+        status = "Exceeded"
+
     return render(request, 'diet/dashboard.html', {
+        'limit':limit,
+        'status':status,
         'meals': meals,
         'total_calories': total_calories,
         'food_names': food_names,
