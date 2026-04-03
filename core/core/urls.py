@@ -20,40 +20,68 @@ from users.views import register
 from django.contrib.auth import views as auth_views
 from chatbot.views import chat
 from django.urls import include
+from django.shortcuts import render
+from datetime import date, timedelta
+from django.contrib.auth.decorators import login_required
 from diet.models import Meal
 import json
-from django.shortcuts import render
 
+@login_required
 def home(request):
-    if request.user.is_authenticated:
-        meals=Meal.objects.filter(user=request.user)
-        labels=[]
-        data=[]
-        for meal in meals:
-            labels.append(meal.food.name)
-            data.append(meal.total_calories())
+    today = date.today()
 
-        context = {
-            "labels": json.dumps(labels),
-            "data": json.dumps(data),
-            "total_calories": sum(data),
-            "meals_count": len(data)
-        }
-    else:
-        context={}
+    # 🔥 Weekly data
+    week_data = []
+    week_labels = []
+
+    for i in range(7):
+        day = today - timedelta(days=i)
+        meals = Meal.objects.filter(user=request.user, date=day)
+        total = sum(m.total_calories() for m in meals)
+
+        week_labels.append(day.strftime("%A"))
+        week_data.append(total)
+
+    # 🔥 Monthly data
+    month_data = []
+    month_labels = []
+
+    for i in range(30):
+        day = today - timedelta(days=i)
+        meals = Meal.objects.filter(user=request.user, date=day)
+        total = sum(m.total_calories() for m in meals)
+
+        month_labels.append(day.strftime("%d %b"))
+        month_data.append(total)
+
+    context = {
+        "week_labels": json.dumps(week_labels[::-1]),
+        "week_data": json.dumps(week_data[::-1]),
+        "month_labels": json.dumps(month_labels[::-1]),
+        "month_data": json.dumps(month_data[::-1]),
+    }
 
     return render(request, 'home.html', context)
-
 '''def home(request):
     from django.shortcuts import render
     return render(request, 'home.html')'''
 
+def about(request):
+    return render(request, 'about.html')
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',home),
-    path('login/',auth_views.LoginView.as_view(template_name='login.html'),name='login'),
-    path('logout/',auth_views.LogoutView.as_view(),name='logout'),
+
+    # 🔓 Public page
+    path('', about),
+
+    # 🔐 Private page
+    path('home/', home),
+
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('register/', register, name='register'),
+
     path('chat/', chat, name='chat'),
-    path('diet/',include('diet.urls')),
+    path('diet/', include('diet.urls')),
 ]

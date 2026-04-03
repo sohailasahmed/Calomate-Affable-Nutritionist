@@ -2,47 +2,48 @@
 
 {% block content %}
 
-<div class="row">
+<h2>Analytics Dashboard</h2>
 
-    <div class="col-md-4">
-        <div class="card p-3 shadow">
-            <h5>Total Calories</h5>
-            <h2>{{ total_calories }}</h2>
-        </div>
-    </div>
+<div class="card p-3 shadow mb-4">
+    <h4>Weekly Calories</h4>
+    <canvas id="weekChart"></canvas>
+</div>
 
-    <div class="col-md-4">
-        <div class="card p-3 shadow">
-            <h5>Meals Logged</h5>
-            <h2>{{ meals_count }}</h2>
-        </div>
-    </div>
-
-    <div class="col-md-12 mt-4">
-        <div class="card p-3 shadow">
-            <canvas id="calorieChart"></canvas>
-        </div>
-    </div>
-
+<div class="card p-3 shadow">
+    <h4>Monthly Calories</h4>
+    <canvas id="monthChart"></canvas>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-const ctx = document.getElementById('calorieChart');
+const weekLabels = JSON.parse('{{ week_labels|escapejs }}');
+const weekData = JSON.parse('{{ week_data|escapejs }}');
 
-const labels = JSON.parse('{{ labels|escapejs }}');
-const data = JSON.parse('{{ data|escapejs }}');
-
-new Chart(ctx, {
-    type: 'bar',
+new Chart(document.getElementById('weekChart'), {
+    type: 'line',
     data: {
-        labels: labels,
+        labels: weekLabels,
         datasets: [{
-            label: 'Calories',
-            data: data,
-            borderWidth: 1
+            label: 'Weekly Calories',
+            data: weekData
         }]
     }
 });
-</script>{% endblock %}
+
+const monthLabels = JSON.parse('{{ month_labels|escapejs }}');
+const monthData = JSON.parse('{{ month_data|escapejs }}');
+
+new Chart(document.getElementById('monthChart'), {
+    type: 'line',
+    data: {
+        labels: monthLabels,
+        datasets: [{
+            label: 'Monthly Calories',
+            data: monthData
+        }]
+    }
+});
+</script>
+
+{% endblock %}

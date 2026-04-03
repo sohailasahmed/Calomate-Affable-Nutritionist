@@ -1,10 +1,42 @@
-<h2>Dashboard</h2>
+{% extends 'base.html' %}
 
-<h3>Total Calories: {{ total_calories }}</h3>
-<h4>Limit: {{ limit }}</h4>
-<h4>Status: {{ status }}</h4>
+{% block content %}
 
-<table border="1">
+<h2 class="mb-4">Dashboard</h2>
+
+<div class="row">
+
+    <!-- Calories -->
+    <div class="col-md-4">
+        <div class="card p-3 shadow">
+            <h5>Total Calories</h5>
+            <h2>{{ total_calories }}</h2>
+        </div>
+    </div>
+
+    <!-- Recommended -->
+    <div class="col-md-4">
+        <div class="card p-3 shadow">
+            <h5>Recommended</h5>
+            <h2>{{ calories_needed }}</h2>
+        </div>
+    </div>
+
+    <!-- Feedback -->
+    <div class="col-md-4">
+        <div class="card p-3 shadow">
+            <h5>Status</h5>
+            <p>{{ feedback }}</p>
+        </div>
+    </div>
+
+</div>
+
+<hr>
+
+<h4>Meals</h4>
+
+<table class="table table-striped">
     <tr>
         <th>Food</th>
         <th>Quantity</th>
@@ -16,20 +48,23 @@
         <td>{{ meal.food.name }}</td>
         <td>{{ meal.quantity }}</td>
         <td>{{ meal.total_calories }}</td>
-    </tr>   
+    </tr>
     {% endfor %}
 </table>
 
-<br>
+<hr>
 
-<a href="{% url 'add_meal' %}">Add Meal</a>
-<a href="/chat/">Go to Chatbot</a>
+<h4>Suggestions</h4>
+<ul>
+    {% for s in suggestions %}
+        <li>{{ s }}</li>
+    {% endfor %}
+</ul>
 
 <hr>
 
-<h2>Calories Chart</h2>
-
-<canvas id="myChart" width="400" height="200"></canvas>
+<h4>Calories Chart</h4>
+<canvas id="myChart"></canvas>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -37,16 +72,17 @@
     const labels = JSON.parse('{{ food_names|escapejs }}');
     const data = JSON.parse('{{ calories|escapejs }}');
 
-    const ctx = document.getElementById('myChart').getContext('2d');
+    const ctx = document.getElementById('myChart');
 
     new Chart(ctx, {
-        type: 'bar',
+        type: 'doughnut',
         data: {
             labels: labels,
             datasets: [{
-                label: 'Calories',
                 data: data
             }]
         }
     });
 </script>
+
+{% endblock %}
