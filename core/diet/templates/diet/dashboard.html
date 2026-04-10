@@ -2,31 +2,28 @@
 
 {% block content %}
 
-<h2 class="mb-4">Dashboard</h2>
+<h2 class="mb-4">Your Daily Dashboard 📊</h2>
 
-<div class="row">
+<div class="row text-center">
 
-    <!-- Calories -->
     <div class="col-md-4">
-        <div class="card p-3 shadow">
-            <h5>Total Calories</h5>
-            <h2>{{ total_calories }}</h2>
+        <div class="card p-3 shadow border-0">
+            <h6>Total Calories</h6>
+            <h2 class="text-primary">{{ total_calories }}</h2>
         </div>
     </div>
 
-    <!-- Recommended -->
     <div class="col-md-4">
-        <div class="card p-3 shadow">
-            <h5>Recommended</h5>
-            <h2>{{ calories_needed }}</h2>
+        <div class="card p-3 shadow border-0">
+            <h6>Recommended</h6>
+            <h2 class="text-success">{{ calories_needed }}</h2>
         </div>
     </div>
 
-    <!-- Feedback -->
     <div class="col-md-4">
-        <div class="card p-3 shadow">
-            <h5>Status</h5>
-            <p>{{ feedback }}</p>
+        <div class="card p-3 shadow border-0">
+            <h6>Status</h6>
+            <p class="fw-bold">{{ feedback }}</p>
         </div>
     </div>
 
@@ -63,26 +60,79 @@
 
 <hr>
 
-<h4>Calories Chart</h4>
-<canvas id="myChart"></canvas>
+<h4>Recommended Exercises 🏃</h4>
+
+<ul>
+    {% for e in exercises %}
+        <li>{{ e }}</li>
+    {% endfor %}
+</ul>
+
+<hr>
+
+<div class="card p-3 shadow text-center">
+    <h4>Calories Distribution 🍩</h4>
+    <canvas id="myChart" style="max-width:400px; margin:auto;"></canvas>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    const labels = JSON.parse('{{ food_names|escapejs }}');
-    const data = JSON.parse('{{ calories|escapejs }}');
+const labels = JSON.parse('{{ food_names|escapejs }}');
+const data = JSON.parse('{{ calories|escapejs }}');
+const percentages = JSON.parse('{{ percentages|escapejs }}');
 
-    const ctx = document.getElementById('myChart');
-
-    new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: labels,
-            datasets: [{
-                data: data
-            }]
+new Chart(document.getElementById('myChart'), {
+    type: 'doughnut',
+    data: {
+        labels: labels.map((l, i) => l + " (" + percentages[i].toFixed(1) + "%)"),
+        datasets: [{
+            data: data
+        }]
+    },
+    options: {
+        plugins: {
+            legend: { position: 'bottom' },
+            title: {
+                display: true,
+                text: 'Calories Distribution (%)'
+            }
         }
-    });
+    }
+});
 </script>
+
+<!-- ---------------------- -->
+<hr>
+
+<h4>Calories by Meal Type 🍽️</h4>
+<canvas id="barChart" height="120"></canvas>
+
+<script>
+const meal_Labels = JSON.parse('{{ meal_types|escapejs }}');
+const meal_Data = JSON.parse('{{ meal_calories|escapejs }}');
+
+new Chart(document.getElementById('barChart'), {
+    type: 'bar',
+    data: {
+        labels: meal_Labels,
+        datasets: [{
+            label: 'Calories',
+            data: meal_Data
+        }]
+    },
+    options: {
+        plugins: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Calories per Meal Type'
+            }
+        }
+    }
+});
+</script>
+
+<hr>
 
 {% endblock %}

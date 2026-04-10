@@ -21,47 +21,96 @@ from django.contrib.auth import views as auth_views
 from chatbot.views import chat
 from django.urls import include
 from django.shortcuts import render
-from datetime import date, timedelta
-from django.contrib.auth.decorators import login_required
-from diet.models import Meal
+
+from collections import defaultdict
+from datetime import datetime, timedelta
 import json
+from django.contrib.auth.decorators import login_required
 
 @login_required
 def home(request):
-    today = date.today()
+    from diet.models import Meal
 
-    # 🔥 Weekly data
-    week_data = []
-    week_labels = []
+    meals = Meal.objects.filter(user=request.user)
 
-    for i in range(7):
+    # -------------------------------
+    # 1. Top 10 Foods
+    # -------------------------------
+    food_map = defaultdict(int)
+    quantity_map = defaultdict(int)
+
+    for meal in meals:
+        food_map[meal.food.name] += meal.total_calories()
+        quantity_map[meal.food.name] += meal.quantity
+
+    sorted_foods = sorted(food_map.items(), key=lambda x: x[1], reverse=True)[:10]
+
+    top_food_labels = [f[0] for f in sorted_foods]
+    top_food_data = [f[1] for f in sorted_foods]
+
+    # -------------------------------
+    # 2. Scatter Plot
+    # -------------------------------
+    scatter_data = []
+
+    for name in food_map:
+        scatter_data.append({
+            "x": quantity_map[name],
+            "y": food_map[name]
+        })
+
+    # -------------------------------
+    # 3. Daily vs Target (Last 7 days)
+    # -------------------------------
+    today = datetime.today().date()
+
+    daily_labels = []
+    daily_calories = []
+    target_calories = []
+
+    for i in range(6, -1, -1):
         day = today - timedelta(days=i)
-        meals = Meal.objects.filter(user=request.user, date=day)
-        total = sum(m.total_calories() for m in meals)
+        day_meals = Meal.objects.filter(user=request.user, date=day)
 
-        week_labels.append(day.strftime("%A"))
-        week_data.append(total)
+        total = sum(m.total_calories() for m in day_meals)
 
-    # 🔥 Monthly data
-    month_data = []
-    month_labels = []
+        daily_labels.append(day.strftime("%a"))
+        daily_calories.append(total)
+        target_calories.append(2000)
 
-    for i in range(30):
-        day = today - timedelta(days=i)
-        meals = Meal.objects.filter(user=request.user, date=day)
-        total = sum(m.total_calories() for m in meals)
+    # -------------------------------
+    # 4. Cumulative Trend
+    # -------------------------------
+    all_meals = Meal.objects.filter(user=request.user).order_by('date')
 
-        month_labels.append(day.strftime("%d %b"))
-        month_data.append(total)
+    date_map = defaultdict(int)
 
-    context = {
-        "week_labels": json.dumps(week_labels[::-1]),
-        "week_data": json.dumps(week_data[::-1]),
-        "month_labels": json.dumps(month_labels[::-1]),
-        "month_data": json.dumps(month_data[::-1]),
-    }
+    for meal in all_meals:
+        date_map[str(meal.date)] += meal.total_calories()
 
-    return render(request, 'home.html', context)
+    running_total = 0
+    cumulative_labels = []
+    cumulative_data = []
+
+    for d in sorted(date_map.keys()):
+        running_total += date_map[d]
+        cumulative_labels.append(d)
+        cumulative_data.append(running_total)
+
+    return render(request, 'home.html', {
+        "top_food_labels": json.dumps(top_food_labels),
+        "top_food_data": json.dumps(top_food_data),
+
+        "scatter_data": json.dumps(scatter_data),
+
+        "daily_labels": json.dumps(daily_labels),
+        "daily_calories": json.dumps(daily_calories),
+        "target_calories": json.dumps(target_calories),
+
+        "cumulative_labels": json.dumps(cumulative_labels),
+        "cumulative_data": json.dumps(cumulative_data),
+    })
+
 '''def home(request):
     from django.shortcuts import render
     return render(request, 'home.html')'''

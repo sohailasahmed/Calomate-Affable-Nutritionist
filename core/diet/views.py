@@ -5,6 +5,7 @@ from users.models import Profile
 import json
 from datetime import date
 from django.contrib.auth.decorators import login_required
+from collections import defaultdict
 
 @login_required
 def add_meal(request):
@@ -44,16 +45,38 @@ def dashboard(request):
         calories_needed = 2000  # fallback default
 
     total_calories = 0
-    food_names = []
-    calories = []
+    food_totals = defaultdict(int)
 
     for meal in meals:
         cal = meal.total_calories()
         total_calories += cal
+        food_totals[meal.food.name] += cal
 
-        food_names.append(meal.food.name)
-        calories.append(cal)
+    food_names = list(food_totals.keys())
+    calories = list(food_totals.values())
 
+    total = sum(calories)
+
+    percentages = []
+    for c in calories:
+        if total > 0:
+            percentages.append((c / total) * 100)
+        else:
+            percentages.append(0)
+# ------------------
+    meal_group = {
+        "breakfast": 0,
+        "lunch": 0,
+        "dinner": 0
+    }
+
+    for meal in meals:
+        meal_group[meal.meal_type] += meal.total_calories()
+
+    meal_types = list(meal_group.keys())
+    meal_calories = list(meal_group.values())
+
+# -------------------
     difference = calories_needed - total_calories
 
     suggestions = []
@@ -70,7 +93,16 @@ def dashboard(request):
     else:
         # User exceeded
         suggestions = ["Avoid heavy meals now", "Drink water", "Go for a walk"]
+# --------------------
+    exercises = []
 
+    if difference > 300:
+        exercises = ["Light walking (10 mins)", "Stretching", "Yoga"]
+    elif difference > 0:
+        exercises = ["Brisk walking (20 mins)", "Cycling", "Light jogging"]
+    else:
+        exercises = ["Running (30 mins)", "HIIT workout", "Gym training"]
+# ----------------------------
     #feedback
     if difference > 0:
         feedback = f"You can eat {difference} more calories 👍"
@@ -78,14 +110,18 @@ def dashboard(request):
         feedback = "Perfect! You met your goal 🎯"
     else:
         feedback = f"You exceeded by {abs(difference)} calories ⚠️"
-
+# -------------------------------
     return render(request, 'diet/dashboard.html', {
         'meals': meals,
-        'calories_needed': int(calories_needed),
         'total_calories': total_calories,
         'food_names': json.dumps(food_names),
         'calories': json.dumps(calories),
-        'feedback': feedback,
+        'percentages': json.dumps(percentages),
+        'meal_types': json.dumps(meal_types),
+        'meal_calories': json.dumps(meal_calories),
         'suggestions': suggestions,
+        'exercises': exercises,
+        'feedback': feedback,
+        'calories_needed': int(calories_needed),
         'today': today
     })

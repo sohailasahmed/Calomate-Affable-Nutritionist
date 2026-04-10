@@ -21,7 +21,12 @@
         <a class="btn btn-outline-light me-2" href="/diet/dashboard/">Dashboard</a>
         <a class="btn btn-outline-light me-2" href="/diet/add-meal/">Add Meal</a>
         <a class="btn btn-outline-light me-2" href="/chat/">Chatbot</a>
-        <a class="btn btn-danger" href="/logout/">Logout</a>
+
+        <form method="POST" action="/logout/" style="display:inline;">
+            {% csrf_token %}
+            <button class="btn btn-danger">Logout</button>
+        </form>
+
       {% else %}
         <a class="btn btn-outline-light me-2" href="/login/">Login</a>
         <a class="btn btn-success" href="/register/">Register</a>
