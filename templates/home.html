@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>pending update</h1>
+<h2 class="mb-4">Analytics Dashboard 📊</h2>
+
+<!-- Top 10 Foods -->
+<div class="card p-3 shadow mb-4">
+    <h4>Top 10 Foods 🍽️</h4>
+    <canvas id="topFoods"></canvas>
+</div>
+
+<!-- Scatter Plot -->
+<div class="card p-3 shadow mb-4">
+    <h4>Calorie Density (Quantity vs Calories)</h4>
+    <canvas id="scatterChart"></canvas>
+</div>
+
+<!-- Daily vs Target -->
+<div class="card p-3 shadow mb-4">
+    <h4>Daily vs Target Calories</h4>
+    <canvas id="dailyChart"></canvas>
+</div>
+
+<!-- Cumulative Trend -->
+<div class="card p-3 shadow mb-4">
+    <h4>Cumulative Calories Trend 📈</h4>
+    <canvas id="cumulativeChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+// Top Foods
+new Chart(document.getElementById('topFoods'), {
+    type: 'bar',
+    data: {
+        labels: JSON.parse('{{ top_food_labels|escapejs }}'),
+        datasets: [{
+            label: 'Calories',
+            data: JSON.parse('{{ top_food_data|escapejs }}')
+        }]
+    }
+});
+
+// Scatter Plot
+new Chart(document.getElementById('scatterChart'), {
+    type: 'scatter',
+    data: {
+        datasets: [{
+            label: 'Foods',
+            data: JSON.parse('{{ scatter_data|escapejs }}')
+        }]
+    },
+    options: {
+        scales: {
+            x: {
+                title: { display: true, text: 'Quantity' }
+            },
+            y: {
+                title: { display: true, text: 'Calories' }
+            }
+        }
+    }
+});
+
+// Daily vs Target
+new Chart(document.getElementById('dailyChart'), {
+    type: 'line',
+    data: {
+        labels: JSON.parse('{{ daily_labels|escapejs }}'),
+        datasets: [
+            {
+                label: 'Consumed',
+                data: JSON.parse('{{ daily_calories|escapejs }}')
+            },
+            {
+                label: 'Target',
+                data: JSON.parse('{{ target_calories|escapejs }}')
+            }
+        ]
+    }
+});
+
+// Cumulative Trend
+new Chart(document.getElementById('cumulativeChart'), {
+    type: 'line',
+    data: {
+        labels: JSON.parse('{{ cumulative_labels|escapejs }}'),
+        datasets: [{
+            label: 'Total Calories',
+            data: JSON.parse('{{ cumulative_data|escapejs }}')
+        }]
+    }
+});
+</script>
+
+{% endblock %}
