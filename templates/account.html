@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+<div class="card shadow p-4">
+
+<h2 class="mb-4">👤 My Health Profile</h2>
+
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+
+<div class="row">
+
+<div class="col-md-6">
+{{ form.profile_pic.label_tag }} {{ form.profile_pic }}
+</div>
+
+<div class="col-md-6">
+{{ form.city.label_tag }} {{ form.city }}
+</div>
+
+<div class="col-md-6 mt-3">
+<label>Height</label><br>
+{{ form.feet }} ft
+{{ form.inches }} in
+</div>
+
+<div class="col-md-6 mt-3">
+<label>Weight</label><br>
+{{ form.weight_kg }} kg
+</div>
+
+<div class="col-md-6 mt-3">
+{{ form.dob.label_tag }} {{ form.dob }}
+</div>
+
+<div class="col-md-6 mt-3">
+{{ form.gender.label_tag }} {{ form.gender }}
+</div>
+
+<div class="col-md-6 mt-3">
+{{ form.goal.label_tag }} {{ form.goal }}
+</div>
+
+<div class="col-md-6 mt-3">
+{{ form.target_weight.label_tag }} {{ form.target_weight }}
+</div>
+
+<div class="col-md-12 mt-3">
+{{ form.medical_conditions.label_tag }}
+{{ form.medical_conditions }}
+</div>
+
+</div>
+
+<button class="btn btn-primary mt-4">Save Profile</button>
+
+</form>
+
+<hr class="my-4">
+
+<h4>📊 Health Metrics</h4>
+
+<p><strong>Age:</strong> {{ age }}</p>
+<p><strong>BMI:</strong> {{ bmi }} ({{ bmi_status }})</p>
+<p><strong>Estimated Daily Calories:</strong> {{ calories }}</p>
+
+<hr>
+
+<a href="/logout/" class="btn btn-danger">Logout</a>
+
+</div>
+</div>
+
+{% endblock %}

@@ -21,11 +21,14 @@
         <a class="btn btn-outline-light me-2" href="/diet/dashboard/">Dashboard</a>
         <a class="btn btn-outline-light me-2" href="/diet/add-meal/">Add Meal</a>
         <a class="btn btn-outline-light me-2" href="/chat/">Chatbot</a>
-
         <form method="POST" action="/logout/" style="display:inline;">
             {% csrf_token %}
             <button class="btn btn-danger">Logout</button>
         </form>
+        <a href="/account/" class="btn btn-light rounded-circle ms-2 " style="width:45px;height:45px; display:inline-flex; justify-content:center; align-items:center;">👤</a>
+<!-- <a href="/account/" class="btn btn-light rounded-circle ms-2 d-flex justify-content-center align-items-center" style="width:45px;height:45px;">
+    🙋‍♂️
+</a> -->
 
       {% else %}
         <a class="btn btn-outline-light me-2" href="/login/">Login</a>

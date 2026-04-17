@@ -1,7 +1,7 @@
 import requests
 from django.shortcuts import render
 from diet.models import Meal
-from users.models import Profile
+from users.models import UserProfile
 from datetime import date
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
@@ -21,8 +21,26 @@ def chat(request):
             total_calories = sum(m.total_calories() for m in meals)
 
             try:
-                profile = Profile.objects.get(user=request.user)
-                calories_needed = 10 * profile.weight + 6.25 * profile.height - 5 * profile.age + 5
+                profile = UserProfile.objects.get(user=request.user)
+
+                # height convert
+                total_inches = (profile.feet * 12) + profile.inches
+                height_cm = total_inches * 2.54
+
+                # calculate age
+                today = date.today()
+                age = 25
+
+                if profile.dob:
+                    age = today.year - profile.dob.year - (
+                        (today.month, today.day) < (profile.dob.month, profile.dob.day)
+                    )
+
+                # BMR
+                if profile.gender.lower() == "female":
+                    calories_needed = 10 * profile.weight_kg + 6.25 * height_cm - 5 * age - 161
+                else:
+                    calories_needed = 10 * profile.weight_kg + 6.25 * height_cm - 5 * age + 5
 
                 if profile.goal == 'loss':
                     calories_needed -= 300

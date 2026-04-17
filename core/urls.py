@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from users.views import register
+from users.views import register, account
 from django.contrib.auth import views as auth_views
 from chatbot.views import chat
 from django.urls import include
@@ -133,4 +133,5 @@ urlpatterns = [
 
     path('chat/', chat, name='chat'),
     path('diet/', include('diet.urls')),
+    path('account/', account, name='account'),
 ]

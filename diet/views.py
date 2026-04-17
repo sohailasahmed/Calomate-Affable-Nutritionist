@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import MealForm
 from .models import Meal
-from users.models import Profile
+from users.models import UserProfile
 import json
 from datetime import date
 from django.contrib.auth.decorators import login_required
@@ -26,7 +26,7 @@ def dashboard(request):
     today = date.today()
     meals = Meal.objects.filter(user=request.user, date=today)
     try:
-        profile = Profile.objects.get(user=request.user)
+        profile = UserProfile.objects.get(user=request.user)
 
         weight = profile.weight
         height = profile.height
