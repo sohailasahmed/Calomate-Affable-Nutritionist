@@ -17,18 +17,31 @@
 
     <div>
       {% if user.is_authenticated %}
+
         <a class="btn btn-outline-light me-2" href="/home/">Home</a>
         <a class="btn btn-outline-light me-2" href="/diet/dashboard/">Dashboard</a>
         <a class="btn btn-outline-light me-2" href="/diet/add-meal/">Add Meal</a>
         <a class="btn btn-outline-light me-2" href="/chat/">Chatbot</a>
+        <a href="{% url 'account' %}" class="ms-2 me-2 text-decoration-none">
+
+        {% if user.userprofile.profile_pic %}
+            <img src="{{ user.userprofile.profile_pic.url }}"
+                width="36"
+                height="36"
+                style="border-radius:50%; object-fit:cover; border:2px solid white;">
+        {% else %}
+            <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+                width="36"
+                height="36"
+                style="border-radius:50%; border:2px solid white;">
+        {% endif %}
+
+        </a>
+
         <form method="POST" action="/logout/" style="display:inline;">
             {% csrf_token %}
             <button class="btn btn-danger">Logout</button>
         </form>
-        <a href="/account/" class="btn btn-light rounded-circle ms-2 " style="width:45px;height:45px; display:inline-flex; justify-content:center; align-items:center;">👤</a>
-<!-- <a href="/account/" class="btn btn-light rounded-circle ms-2 d-flex justify-content-center align-items-center" style="width:45px;height:45px;">
-    🙋‍♂️
-</a> -->
 
       {% else %}
         <a class="btn btn-outline-light me-2" href="/login/">Login</a>

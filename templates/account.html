@@ -1,75 +1,231 @@
 {% extends 'base.html' %}
-
 {% block content %}
 
 <div class="container mt-4">
 
-<div class="card shadow p-4">
+<div class="row g-4">
 
-<h2 class="mb-4">👤 My Health Profile</h2>
+    <!-- LEFT SIDE : EDIT PROFILE -->
+    <div class="col-lg-7">
+        <div class="card shadow-lg border-0 rounded-4 p-4">
 
-<form method="POST" enctype="multipart/form-data">
-{% csrf_token %}
+            <h2 class="mb-4 fw-bold">Edit Profile ⚙️</h2>
 
-<div class="row">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
 
-<div class="col-md-6">
-{{ form.profile_pic.label_tag }} {{ form.profile_pic }}
-</div>
+                <div class="row">
 
-<div class="col-md-6">
-{{ form.city.label_tag }} {{ form.city }}
-</div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Profile Picture</label>
+                        {{ form.profile_pic }}
+                    </div>
 
-<div class="col-md-6 mt-3">
-<label>Height</label><br>
-{{ form.feet }} ft
-{{ form.inches }} in
-</div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">City</label>
+                        {{ form.city }}
+                    </div>
 
-<div class="col-md-6 mt-3">
-<label>Weight</label><br>
-{{ form.weight_kg }} kg
-</div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Feet</label>
+                        {{ form.feet }}
+                    </div>
 
-<div class="col-md-6 mt-3">
-{{ form.dob.label_tag }} {{ form.dob }}
-</div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Inches</label>
+                        {{ form.inches }}
+                    </div>
 
-<div class="col-md-6 mt-3">
-{{ form.gender.label_tag }} {{ form.gender }}
-</div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Weight (KG)</label>
+                        {{ form.weight_kg }}
+                    </div>
 
-<div class="col-md-6 mt-3">
-{{ form.goal.label_tag }} {{ form.goal }}
-</div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Date of Birth</label>
+                        {{ form.dob }}
+                    </div>
 
-<div class="col-md-6 mt-3">
-{{ form.target_weight.label_tag }} {{ form.target_weight }}
-</div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Gender</label>
+                        {{ form.gender }}
+                    </div>
 
-<div class="col-md-12 mt-3">
-{{ form.medical_conditions.label_tag }}
-{{ form.medical_conditions }}
-</div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Goal</label>
+                        {{ form.goal }}
+                    </div>
 
-</div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Target Weight</label>
+                        {{ form.target_weight }}
+                    </div>
 
-<button class="btn btn-primary mt-4">Save Profile</button>
+                    <div class="col-md-12 mb-3">
+                        <label class="form-label">Medical Conditions</label>
+                        {{ form.medical_conditions }}
+                    </div>
 
-</form>
+                </div>
 
-<hr class="my-4">
+                <button type="submit" class="btn btn-success w-100 mt-2">
+                    Save Profile
+                </button>
 
-<h4>📊 Health Metrics</h4>
+            </form>
 
-<p><strong>Age:</strong> {{ age }}</p>
-<p><strong>BMI:</strong> {{ bmi }} ({{ bmi_status }})</p>
-<p><strong>Estimated Daily Calories:</strong> {{ calories }}</p>
+        </div>
+    </div>
 
-<hr>
 
-<a href="/logout/" class="btn btn-danger">Logout</a>
+    <!-- RIGHT SIDE : DASHBOARD -->
+    <div class="col-lg-5">
+
+        <!-- PROFILE CARD -->
+        <div class="card shadow-lg border-0 rounded-4 p-4 text-center mb-4">
+
+            {% if form.instance.profile_pic %}
+                <img src="{{ form.instance.profile_pic.url }}"
+                     class="mx-auto mb-3"
+                     width="120"
+                     height="120"
+                     style="border-radius:50%; object-fit:cover;">
+            {% else %}
+                <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+                     class="mx-auto mb-3"
+                     width="120">
+            {% endif %}
+
+            <h4 class="fw-bold">{{ request.user.username }}</h4>
+            <p class="text-muted">{{ form.instance.city }}</p>
+
+            <div class="row text-center mt-3">
+                <div class="col-6">
+                    <h6>BMI</h6>
+                    <h5 class="text-primary">{{ bmi|default:"--" }}</h5>
+                    <small>{{ bmi_status }}</small>
+                </div>
+
+                <div class="col-6">
+                    <h6>Calories</h6>
+                    <h5 class="text-success">
+                        {% if calories %}
+                            {{ calories }}
+                        {% else %}
+                            --
+                        {% endif %}
+                    </h5>
+                    <small>kcal/day</small>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- TRACKERS -->
+        <div class="card shadow border-0 rounded-4 p-4 mb-4">
+
+            <h4 class="mb-4">Daily Trackers 📊</h4>
+
+            <!-- WATER -->
+            <div class="mb-4">
+                <div class="d-flex justify-content-between">
+                    <strong>Water 💧</strong>
+                    <span>{{ profile.water_glasses }}/8</span>
+                </div>
+
+                <div class="progress mt-2" style="height:10px;">
+                    <div class="progress-bar bg-info"
+                        style="--water: {{ water_percent }}%; width: var(--water);">
+                    </div>
+                </div>
+
+                <form method="POST" class="mt-2">
+                    {% csrf_token %}
+                    <button name="add_water" class="btn btn-sm btn-info w-100">
+                        + Add Water
+                    </button>
+                </form>
+            </div>
+
+
+            <!-- STEPS -->
+            <div class="mb-4">
+                <div class="d-flex justify-content-between">
+                    <strong>Steps 👣</strong>
+                    <span>{{ profile.steps }}/10000</span>
+                </div>
+
+                <div class="progress mt-2" style="height:10px;">
+                    <div class="progress-bar bg-success"
+                        style="--steps: {{ steps_percent }}%; width: var(--steps);">
+                    </div>
+                </div>
+
+                <form method="POST" class="mt-2">
+                    {% csrf_token %}
+                    <button name="add_steps" class="btn btn-sm btn-success w-100">
+                        +1000 Steps
+                    </button>
+                </form>
+            </div>
+
+
+            <!-- SLEEP -->
+            <div>
+                <div class="d-flex justify-content-between">
+                    <strong>Sleep 😴</strong>
+                    <span>{{ profile.sleep_hours }}/8 hrs</span>
+                </div>
+
+                <div class="progress mt-2" style="height:10px;">
+                    <div class="progress-bar bg-dark"
+                        style="--sleeps: {{ sleep_percent }}%; width: var(--sleeps);">
+                    </div>
+                </div>
+
+                <form method="POST" class="mt-2">
+                    {% csrf_token %}
+                    <button name="add_sleep" class="btn btn-sm btn-dark w-100">
+                        +1 Hour
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+
+        <!-- RECOMMENDATIONS -->
+        <div class="card shadow border-0 rounded-4 p-4 mb-4">
+
+            <h4 class="mb-3">Recommendations 🍎</h4>
+
+            <ul class="mb-0">
+                {% for item in recommendations %}
+                    <li class="mb-2">{{ item }}</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+
+        <!-- BUTTONS -->
+        <div class="d-grid gap-2">
+
+            <a href="/report/" class="btn btn-primary">
+                Download Health Report
+            </a>
+
+            <form method="POST" action="/logout/">
+                {% csrf_token %}
+                <button class="btn btn-danger w-100">
+                    Logout
+                </button>
+            </form>
+
+        </div>
+
+    </div>
 
 </div>
 </div>

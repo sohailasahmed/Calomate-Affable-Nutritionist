@@ -25,25 +25,32 @@ def add_meal(request):
 def dashboard(request):
     today = date.today()
     meals = Meal.objects.filter(user=request.user, date=today)
-    try:
-        profile = UserProfile.objects.get(user=request.user)
 
-        weight = profile.weight
-        height = profile.height
-        age = profile.age
+    # ---------------- USER PROFILE ----------------
+    profile = UserProfile.objects.filter(user=request.user).first()
 
-        # Simple BMR formula
-        calories_needed = 10 * weight + 6.25 * height - 5 * age + 5
+    calories_needed = 2000
 
-        # Adjust based on goal
-        if profile.goal == 'loss':
+    if profile and profile.dob and profile.gender:
+        age = today.year - profile.dob.year - (
+            (today.month, today.day) < (profile.dob.month, profile.dob.day)
+        )
+
+        height_cm = ((profile.feet * 12) + profile.inches) * 2.54
+        weight = profile.weight_kg
+
+        if profile.gender.lower() == "male":
+            calories_needed = int(10 * weight + 6.25 * height_cm - 5 * age + 5)
+        else:
+            calories_needed = int(10 * weight + 6.25 * height_cm - 5 * age - 161)
+
+        # Goal adjustment
+        if profile.goal == "loss":
             calories_needed -= 300
-        elif profile.goal == 'gain':
+        elif profile.goal == "gain":
             calories_needed += 300
 
-    except:
-        calories_needed = 2000  # fallback default
-
+    # ---------------- TOTAL CALORIES ----------------
     total_calories = 0
     food_totals = defaultdict(int)
 
@@ -63,7 +70,8 @@ def dashboard(request):
             percentages.append((c / total) * 100)
         else:
             percentages.append(0)
-# ------------------
+
+    # ---------------- MEAL TYPE CHART ----------------
     meal_group = {
         "breakfast": 0,
         "lunch": 0,
@@ -76,44 +84,61 @@ def dashboard(request):
     meal_types = list(meal_group.keys())
     meal_calories = list(meal_group.values())
 
-# -------------------
+    # ---------------- DIFFERENCE ----------------
     difference = calories_needed - total_calories
 
+    # ---------------- FOOD SUGGESTIONS ----------------
     suggestions = []
 
     if difference > 0:
-        # User can eat more
         if difference < 200:
             suggestions = ["Eat fruits", "Have a small snack like nuts"]
         elif difference < 500:
-            suggestions = ["Add 1 boiled egg", "Eat a sandwich", "Drink milk"]
+            suggestions = ["Add boiled eggs", "Drink milk", "Eat sandwich"]
         else:
-            suggestions = ["Have rice with curry", "Add chicken meal", "Full meal recommended"]
-
+            suggestions = ["Full meal recommended", "Rice with curry", "Chicken meal"]
     else:
-        # User exceeded
-        suggestions = ["Avoid heavy meals now", "Drink water", "Go for a walk"]
-# --------------------
+        suggestions = ["Avoid heavy meals now", "Drink water", "Take a walk"]
+
+    # ---------------- EXERCISES ----------------
     exercises = []
 
     if difference > 300:
-        exercises = ["Light walking (10 mins)", "Stretching", "Yoga"]
+        exercises = ["Walking 10 mins", "Stretching", "Yoga"]
     elif difference > 0:
-        exercises = ["Brisk walking (20 mins)", "Cycling", "Light jogging"]
+        exercises = ["Brisk walk 20 mins", "Cycling", "Jogging"]
     else:
-        exercises = ["Running (30 mins)", "HIIT workout", "Gym training"]
-# ----------------------------
-    #feedback
+        exercises = ["Running 30 mins", "HIIT", "Gym Workout"]
+
+    # ---------------- FEEDBACK ----------------
     if difference > 0:
         feedback = f"You can eat {difference} more calories 👍"
     elif difference == 0:
         feedback = "Perfect! You met your goal 🎯"
     else:
         feedback = f"You exceeded by {abs(difference)} calories ⚠️"
-# -------------------------------
+
+    # ----------------progress_percentage---------------
+    if calories_needed > 0:
+        raw_percent = int((total_calories / calories_needed) * 100)
+    else:
+        raw_percent = 0
+
+    progress_percent = min(raw_percent, 100)
+
+    # Color logic
+    if raw_percent < 80:
+        progress_color = "bg-success"
+    elif raw_percent <= 100:
+        progress_color = "bg-warning"
+    else:
+        progress_color = "bg-danger"
+    # ---------------- SEND TO TEMPLATE ----------------
     return render(request, 'diet/dashboard.html', {
         'meals': meals,
+        'today': today,
         'total_calories': total_calories,
+        'calories_needed': calories_needed,
         'food_names': json.dumps(food_names),
         'calories': json.dumps(calories),
         'percentages': json.dumps(percentages),
@@ -122,6 +147,7 @@ def dashboard(request):
         'suggestions': suggestions,
         'exercises': exercises,
         'feedback': feedback,
-        'calories_needed': int(calories_needed),
-        'today': today
+        'progress_percent': progress_percent,
+        'raw_percent': raw_percent,
+        'progress_color': progress_color,
     })

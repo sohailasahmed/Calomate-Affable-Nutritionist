@@ -24,5 +24,25 @@ class UserProfile(models.Model):
 
     medical_conditions = models.TextField(blank=True)
 
+    water_glasses = models.IntegerField(default=0)
+    steps = models.IntegerField(default=0)
+    sleep_hours = models.FloatField(default=0)
+
     def __str__(self):
         return self.user.username
+    
+class WaterIntake(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=True)
+    glasses = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.date}"
+    
+class DailySteps(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=True)
+    steps = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.date} - {self.steps}"
