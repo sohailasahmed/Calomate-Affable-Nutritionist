@@ -1,25 +1,61 @@
 from django.shortcuts import render, redirect
+from .models import Meal, Food
 from .forms import MealForm
-from .models import Meal
 from users.models import UserProfile
 import json
 from datetime import date
 from django.contrib.auth.decorators import login_required
 from collections import defaultdict
+from django.views.decorators.http import require_POST
 
 @login_required
 def add_meal(request):
     if request.method == 'POST':
         form = MealForm(request.POST)
+
         if form.is_valid():
             meal = form.save(commit=False)
             meal.user = request.user
             meal.save()
             return redirect('dashboard')
+
     else:
         form = MealForm()
 
-    return render(request, 'diet/add_meal.html', {'form': form})
+    foods = list(
+        Food.objects.all()
+        .order_by('name')
+        .values('id', 'name', 'calories_per_100g')
+    )
+
+    return render(request, 'diet/add_meal.html', {
+        'form': form,
+        'foods': foods
+    })
+
+@login_required
+def delete_meal(request, meal_id):
+
+    meal = Meal.objects.get(id=meal_id, user=request.user)
+    meal.delete()
+
+    return redirect('dashboard')
+
+
+@login_required
+@require_POST
+def add_custom_food(request):
+
+    name = request.POST.get("name")
+    calories = request.POST.get("calories")
+
+    if name and calories:
+        Food.objects.create(
+            name=name.strip(),
+            calories_per_100g=float(calories)
+        )
+
+    return redirect('add_meal')
 
 @login_required
 def dashboard(request):
@@ -73,13 +109,15 @@ def dashboard(request):
 
     # ---------------- MEAL TYPE CHART ----------------
     meal_group = {
-        "breakfast": 0,
-        "lunch": 0,
-        "dinner": 0
-    }
+    "breakfast": 0,
+    "lunch": 0,
+    "dinner": 0,
+    "snack": 0
+}
 
     for meal in meals:
-        meal_group[meal.meal_type] += meal.total_calories()
+        if meal.meal_type in meal_group:
+            meal_group[meal.meal_type] += meal.total_calories()
 
     meal_types = list(meal_group.keys())
     meal_calories = list(meal_group.values())

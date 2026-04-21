@@ -1,0 +1,1001 @@
+name,calories_per_100g,country,category
+Kebab 0,465,USA,Beverage
+Sandwich 1,251,India,Beverage
+Soup 2,477,USA,Grain
+Poha 3,407,UK,Grain
+Steak 4,416,China,Beverage
+Biryani 5,73,Italy,Bakery
+Steak 6,423,Italy,Bakery
+Ramen 7,383,Mexico,Bakery
+Kebab 8,473,France,Dessert
+Hummus 9,333,India,Fast Food
+Tea 10,461,India,Fruit
+Chicken Curry 11,175,Mexico,Fruit
+Salad 12,464,China,Fast Food
+Jollof Rice 13,333,Italy,Dessert
+Rice 14,134,Japan,Beverage
+Pasta 15,342,France,Beverage
+Tea 16,94,Middle East,Grain
+Idli 17,197,USA,Grain
+Noodles 18,427,UK,Bakery
+Sandwich 19,193,France,Protein
+Egg Omelette 20,172,USA,Protein
+Milk 21,314,India,Protein
+Idli 22,62,Italy,Beverage
+Biryani 23,68,India,Protein
+Poha 24,143,Japan,Dessert
+Biryani 25,138,USA,Snack
+Coffee 26,70,Italy,Vegetable
+Idli 27,271,USA,Vegetable
+Salad 28,209,France,Grain
+Fish Fry 29,477,Middle East,Grain
+Fried Rice 30,481,UK,Bakery
+Kebab 31,492,UK,Fruit
+Sandwich 32,181,Middle East,Fast Food
+Kebab 33,469,China,Snack
+Fries 34,93,France,Dessert
+Hummus 35,83,China,Protein
+Paneer 36,91,USA,Fast Food
+Fries 37,58,Mexico,Fruit
+Pizza 38,487,Mexico,Vegetable
+Dosa 39,73,Nigeria,Beverage
+Fries 40,287,Nigeria,Vegetable
+Ramen 41,253,India,Snack
+Roti 42,259,Middle East,Fruit
+Ramen 43,162,Nigeria,Protein
+Croissant 44,86,Italy,Grain
+Couscous 45,379,Mexico,Beverage
+Couscous 46,384,Nigeria,Bakery
+Poha 47,332,China,Vegetable
+Dosa 48,277,UK,Dessert
+Milk 49,264,UK,Beverage
+Sandwich 50,212,Japan,Dessert
+Juice 51,93,USA,Bakery
+Dosa 52,292,France,Fast Food
+Dosa 53,216,Middle East,Snack
+Pizza 54,421,Italy,Dessert
+Burger 55,242,France,Snack
+Salad 56,52,UK,Grain
+Egg Omelette 57,344,Japan,Bakery
+Pasta 58,417,France,Beverage
+Roti 59,235,Middle East,Snack
+Salad 60,172,USA,Bakery
+Falafel 61,154,Italy,Protein
+Sandwich 62,78,UK,Bakery
+Fish Fry 63,324,Middle East,Beverage
+Idli 64,399,China,Fast Food
+Fries 65,84,Nigeria,Protein
+Juice 66,113,Mexico,Beverage
+Noodles 67,362,Mexico,Snack
+Biryani 68,76,Italy,Protein
+Dosa 69,281,China,Protein
+Sandwich 70,255,China,Bakery
+Roti 71,144,France,Protein
+Steak 72,197,India,Protein
+Biryani 73,492,Italy,Vegetable
+Milk 74,52,Mexico,Grain
+Falafel 75,375,India,Dessert
+Couscous 76,460,Mexico,Dessert
+Hummus 77,485,India,Bakery
+Jollof Rice 78,218,Japan,Dessert
+Biryani 79,328,Mexico,Dessert
+Fish Fry 80,442,China,Fast Food
+Croissant 81,307,Mexico,Dessert
+Sandwich 82,180,France,Beverage
+Idli 83,497,Nigeria,Beverage
+Burger 84,403,Nigeria,Dessert
+Salad 85,75,China,Vegetable
+Juice 86,118,Mexico,Fast Food
+Dosa 87,286,Mexico,Dessert
+Idli 88,194,Middle East,Beverage
+Roti 89,361,Nigeria,Snack
+Dal 90,204,UK,Grain
+Sandwich 91,441,Mexico,Bakery
+Hummus 92,274,China,Fruit
+Fried Rice 93,363,Middle East,Protein
+Salad 94,113,USA,Grain
+Kebab 95,67,Italy,Beverage
+Noodles 96,90,USA,Fruit
+Soup 97,419,USA,Protein
+Roti 98,209,Nigeria,Vegetable
+Pizza 99,363,Japan,Fruit
+Dosa 100,211,India,Grain
+Paneer 101,301,Italy,Fruit
+Hummus 102,415,Japan,Protein
+Tea 103,449,Mexico,Snack
+Sushi 104,95,Mexico,Grain
+Pasta 105,419,Mexico,Bakery
+Paneer 106,426,Italy,Vegetable
+Noodles 107,135,Nigeria,Grain
+Hummus 108,185,Nigeria,Grain
+Fish Fry 109,212,Japan,Dessert
+Biryani 110,261,France,Dessert
+Tea 111,216,Mexico,Fruit
+Biryani 112,296,Italy,Protein
+Milk 113,430,Nigeria,Grain
+Tea 114,413,Nigeria,Grain
+Pizza 115,179,Mexico,Beverage
+Poha 116,495,UK,Dessert
+Dal 117,395,Italy,Grain
+Egg Omelette 118,67,Mexico,Protein
+Idli 119,311,Italy,Bakery
+Milk 120,299,Japan,Bakery
+Couscous 121,58,USA,Fruit
+Dosa 122,412,UK,Snack
+Milk 123,216,Japan,Beverage
+Hummus 124,150,Italy,Protein
+Soup 125,160,Nigeria,Dessert
+Steak 126,478,Middle East,Dessert
+Hummus 127,98,USA,Dessert
+Sandwich 128,189,Italy,Grain
+Sandwich 129,397,India,Snack
+Rice 130,146,Mexico,Bakery
+Steak 131,228,Japan,Snack
+Rice 132,335,Japan,Fast Food
+Chicken Curry 133,207,UK,Snack
+Ramen 134,118,India,Grain
+Soup 135,350,China,Beverage
+Noodles 136,368,France,Fruit
+Rice 137,494,Mexico,Fast Food
+Couscous 138,413,China,Beverage
+Hummus 139,248,UK,Grain
+Pasta 140,244,Mexico,Protein
+Steak 141,151,UK,Grain
+Poha 142,473,Nigeria,Bakery
+Poha 143,349,Mexico,Dessert
+Croissant 144,261,China,Snack
+Ramen 145,310,Japan,Bakery
+Dal 146,141,India,Snack
+Rice 147,166,India,Bakery
+Juice 148,64,China,Dessert
+Biryani 149,308,USA,Protein
+Fish Fry 150,84,France,Dessert
+Fried Rice 151,309,India,Protein
+Croissant 152,420,China,Fast Food
+Fries 153,410,India,Vegetable
+Ramen 154,320,India,Fruit
+Jollof Rice 155,57,Nigeria,Fruit
+Biryani 156,362,UK,Fast Food
+Hummus 157,470,USA,Fruit
+Fried Rice 158,354,France,Bakery
+Paneer 159,414,UK,Dessert
+Fries 160,451,Italy,Snack
+Ramen 161,335,Nigeria,Fast Food
+Idli 162,288,UK,Dessert
+Soup 163,401,Mexico,Snack
+Kebab 164,455,Japan,Grain
+Jollof Rice 165,61,USA,Vegetable
+Roti 166,184,USA,Beverage
+Pasta 167,119,Middle East,Fast Food
+Egg Omelette 168,343,Italy,Protein
+Coffee 169,174,China,Dessert
+Juice 170,228,Nigeria,Beverage
+Steak 171,158,UK,Dessert
+Milk 172,50,Nigeria,Grain
+Idli 173,119,China,Bakery
+Sushi 174,377,Italy,Grain
+Juice 175,299,Nigeria,Bakery
+Chicken Curry 176,260,Italy,Fruit
+Biryani 177,86,Mexico,Grain
+Idli 178,373,Mexico,Protein
+Kebab 179,73,France,Fruit
+Soup 180,486,France,Protein
+Milk 181,372,Italy,Grain
+Poha 182,234,UK,Beverage
+Hummus 183,365,Mexico,Protein
+Paneer 184,265,UK,Dessert
+Sushi 185,470,Nigeria,Protein
+Soup 186,127,France,Bakery
+Poha 187,313,UK,Protein
+Pasta 188,349,Japan,Dessert
+Sushi 189,313,Nigeria,Beverage
+Hummus 190,121,Mexico,Fast Food
+Sandwich 191,328,Japan,Bakery
+Salad 192,160,India,Beverage
+Croissant 193,116,Japan,Dessert
+Croissant 194,392,UK,Dessert
+Fish Fry 195,410,Mexico,Vegetable
+Tea 196,390,Mexico,Fast Food
+Noodles 197,97,France,Fast Food
+Sushi 198,398,UK,Protein
+Rice 199,92,UK,Vegetable
+Salad 200,379,France,Vegetable
+Biryani 201,461,India,Grain
+Croissant 202,83,France,Snack
+Sandwich 203,221,China,Fast Food
+Hummus 204,294,UK,Grain
+Ramen 205,221,Japan,Fruit
+Sushi 206,143,Italy,Fast Food
+Biryani 207,62,Mexico,Vegetable
+Hummus 208,214,USA,Snack
+Falafel 209,75,China,Snack
+Sandwich 210,322,France,Fruit
+Fried Rice 211,317,Nigeria,Grain
+Poha 212,300,Nigeria,Dessert
+Couscous 213,369,Middle East,Bakery
+Noodles 214,292,UK,Snack
+Sandwich 215,402,Nigeria,Vegetable
+Dosa 216,483,Middle East,Vegetable
+Fried Rice 217,339,USA,Vegetable
+Roti 218,189,France,Bakery
+Pasta 219,270,Japan,Fruit
+Fish Fry 220,53,Middle East,Dessert
+Sandwich 221,358,Italy,Protein
+Kebab 222,268,Middle East,Fruit
+Biryani 223,250,France,Fast Food
+Couscous 224,403,Middle East,Bakery
+Croissant 225,320,China,Dessert
+Paneer 226,413,Middle East,Grain
+Burger 227,474,Nigeria,Beverage
+Biryani 228,374,UK,Snack
+Milk 229,371,Nigeria,Beverage
+Fish Fry 230,330,India,Fruit
+Pizza 231,229,Japan,Dessert
+Noodles 232,337,Japan,Fast Food
+Dal 233,476,Japan,Snack
+Tea 234,145,France,Snack
+Coffee 235,390,USA,Fast Food
+Poha 236,460,India,Bakery
+Rice 237,121,Japan,Grain
+Kebab 238,396,France,Grain
+Couscous 239,288,Nigeria,Snack
+Tea 240,116,Italy,Snack
+Egg Omelette 241,310,UK,Fast Food
+Sushi 242,94,China,Beverage
+Egg Omelette 243,97,Nigeria,Snack
+Couscous 244,448,UK,Protein
+Chicken Curry 245,459,UK,Snack
+Sandwich 246,112,Nigeria,Vegetable
+Soup 247,65,UK,Dessert
+Burger 248,338,Middle East,Vegetable
+Chicken Curry 249,137,Middle East,Snack
+Kebab 250,307,USA,Beverage
+Pasta 251,152,Italy,Beverage
+Tea 252,143,India,Beverage
+Juice 253,319,USA,Fast Food
+Idli 254,289,Middle East,Fast Food
+Fries 255,262,Mexico,Grain
+Sandwich 256,461,Japan,Grain
+Couscous 257,144,Japan,Beverage
+Couscous 258,234,India,Bakery
+Dosa 259,478,China,Grain
+Pasta 260,90,Italy,Snack
+Fries 261,364,UK,Fast Food
+Egg Omelette 262,188,Nigeria,Beverage
+Idli 263,462,Italy,Fruit
+Hummus 264,373,Mexico,Vegetable
+Jollof Rice 265,232,Nigeria,Snack
+Soup 266,394,USA,Snack
+Jollof Rice 267,228,UK,Fast Food
+Coffee 268,296,UK,Snack
+Idli 269,217,UK,Protein
+Fries 270,54,Nigeria,Vegetable
+Biryani 271,140,France,Fruit
+Egg Omelette 272,298,USA,Fruit
+Tea 273,296,Mexico,Fast Food
+Coffee 274,296,Japan,Dessert
+Kebab 275,109,Nigeria,Fast Food
+Juice 276,86,Nigeria,Protein
+Croissant 277,479,USA,Beverage
+Chicken Curry 278,67,Mexico,Snack
+Ramen 279,123,UK,Vegetable
+Tea 280,104,France,Beverage
+Jollof Rice 281,403,France,Fruit
+Rice 282,117,France,Beverage
+Salad 283,426,France,Fast Food
+Idli 284,169,Nigeria,Grain
+Milk 285,191,India,Grain
+Dal 286,425,Middle East,Beverage
+Biryani 287,438,Middle East,Bakery
+Sushi 288,106,USA,Dessert
+Salad 289,389,UK,Fruit
+Chicken Curry 290,61,Middle East,Fast Food
+Falafel 291,244,China,Vegetable
+Sushi 292,103,Mexico,Dessert
+Ramen 293,342,Middle East,Dessert
+Fried Rice 294,73,China,Beverage
+Egg Omelette 295,346,Nigeria,Protein
+Fries 296,475,Italy,Bakery
+Burger 297,115,India,Vegetable
+Roti 298,352,Middle East,Grain
+Biryani 299,307,UK,Bakery
+Fries 300,495,Nigeria,Bakery
+Idli 301,187,Middle East,Bakery
+Sandwich 302,221,UK,Dessert
+Couscous 303,438,USA,Bakery
+Dal 304,132,Nigeria,Vegetable
+Couscous 305,72,France,Fruit
+Roti 306,287,Mexico,Grain
+Dal 307,335,Nigeria,Snack
+Tea 308,392,India,Snack
+Fries 309,207,Mexico,Vegetable
+Paneer 310,484,France,Bakery
+Egg Omelette 311,77,UK,Fruit
+Falafel 312,358,Middle East,Dessert
+Dal 313,413,UK,Protein
+Idli 314,314,Nigeria,Fast Food
+Sandwich 315,296,USA,Bakery
+Fish Fry 316,288,Middle East,Bakery
+Salad 317,285,UK,Snack
+Ramen 318,226,Mexico,Protein
+Poha 319,423,Japan,Protein
+Roti 320,342,Italy,Fruit
+Hummus 321,385,Mexico,Dessert
+Poha 322,415,USA,Bakery
+Fries 323,369,China,Dessert
+Salad 324,422,France,Dessert
+Falafel 325,306,China,Grain
+Hummus 326,400,Middle East,Protein
+Jollof Rice 327,112,India,Bakery
+Fish Fry 328,389,Mexico,Dessert
+Pasta 329,125,USA,Fruit
+Soup 330,242,Nigeria,Fruit
+Ramen 331,472,Nigeria,Bakery
+Jollof Rice 332,454,UK,Beverage
+Salad 333,311,UK,Snack
+Sushi 334,370,India,Protein
+Jollof Rice 335,468,France,Grain
+Dal 336,73,UK,Fast Food
+Poha 337,278,Nigeria,Snack
+Pizza 338,77,France,Fast Food
+Pasta 339,170,Middle East,Fruit
+Chicken Curry 340,359,UK,Vegetable
+Paneer 341,289,Middle East,Grain
+Pasta 342,120,Mexico,Fruit
+Tea 343,233,Italy,Grain
+Burger 344,370,Mexico,Dessert
+Pizza 345,396,China,Beverage
+Kebab 346,309,Mexico,Vegetable
+Steak 347,137,France,Fruit
+Fried Rice 348,58,Japan,Beverage
+Dal 349,103,USA,Dessert
+Dosa 350,340,France,Bakery
+Juice 351,78,USA,Fast Food
+Tea 352,187,China,Snack
+Kebab 353,224,Mexico,Snack
+Coffee 354,64,France,Protein
+Egg Omelette 355,109,Nigeria,Fruit
+Pasta 356,294,Japan,Bakery
+Ramen 357,394,Middle East,Protein
+Fried Rice 358,483,Nigeria,Snack
+Juice 359,184,Italy,Dessert
+Steak 360,281,France,Fast Food
+Noodles 361,356,China,Protein
+Fries 362,294,Italy,Fast Food
+Chicken Curry 363,160,Japan,Fast Food
+Croissant 364,82,UK,Bakery
+Egg Omelette 365,306,UK,Grain
+Tea 366,195,France,Vegetable
+Dosa 367,229,Nigeria,Fruit
+Juice 368,365,India,Vegetable
+Roti 369,397,France,Dessert
+Biryani 370,421,Middle East,Bakery
+Dal 371,169,Nigeria,Snack
+Falafel 372,397,Middle East,Beverage
+Pasta 373,469,Middle East,Grain
+Ramen 374,471,France,Fast Food
+Fries 375,224,Italy,Fast Food
+Hummus 376,60,UK,Grain
+Idli 377,384,Italy,Vegetable
+Jollof Rice 378,201,USA,Fruit
+Sandwich 379,271,USA,Snack
+Kebab 380,269,USA,Fast Food
+Fried Rice 381,319,USA,Beverage
+Rice 382,397,USA,Snack
+Soup 383,51,Mexico,Snack
+Dosa 384,327,Japan,Grain
+Dosa 385,103,Italy,Vegetable
+Pizza 386,459,Nigeria,Dessert
+Chicken Curry 387,400,China,Fruit
+Dal 388,263,India,Grain
+Dal 389,125,India,Vegetable
+Burger 390,351,France,Vegetable
+Soup 391,399,Japan,Snack
+Noodles 392,115,Italy,Fruit
+Milk 393,59,India,Dessert
+Milk 394,427,UK,Bakery
+Dosa 395,419,Middle East,Fruit
+Poha 396,63,USA,Fruit
+Poha 397,258,Italy,Fruit
+Fish Fry 398,390,Italy,Snack
+Tea 399,320,Mexico,Protein
+Rice 400,442,China,Fruit
+Juice 401,185,Mexico,Dessert
+Fish Fry 402,342,Italy,Vegetable
+Pasta 403,382,India,Fruit
+Falafel 404,412,France,Vegetable
+Juice 405,358,UK,Snack
+Idli 406,246,China,Fruit
+Croissant 407,310,UK,Grain
+Salad 408,283,India,Snack
+Chicken Curry 409,62,France,Protein
+Coffee 410,351,Mexico,Beverage
+Poha 411,327,France,Protein
+Rice 412,331,Japan,Snack
+Falafel 413,337,UK,Vegetable
+Idli 414,463,Nigeria,Dessert
+Pasta 415,375,Nigeria,Fast Food
+Burger 416,415,Italy,Vegetable
+Burger 417,261,Middle East,Beverage
+Couscous 418,70,Japan,Snack
+Fried Rice 419,72,USA,Bakery
+Coffee 420,299,Mexico,Snack
+Chicken Curry 421,328,China,Beverage
+Sandwich 422,277,France,Fruit
+Juice 423,127,USA,Fruit
+Noodles 424,274,Japan,Grain
+Steak 425,416,China,Beverage
+Hummus 426,63,India,Fruit
+Idli 427,279,UK,Snack
+Pasta 428,466,Japan,Beverage
+Soup 429,126,USA,Dessert
+Sandwich 430,425,Japan,Protein
+Jollof Rice 431,248,USA,Vegetable
+Rice 432,355,Middle East,Vegetable
+Dosa 433,54,Japan,Bakery
+Hummus 434,496,Middle East,Bakery
+Tea 435,424,Japan,Vegetable
+Dosa 436,361,Nigeria,Snack
+Salad 437,483,China,Grain
+Coffee 438,89,Middle East,Snack
+Steak 439,219,Mexico,Fruit
+Juice 440,97,Japan,Grain
+Kebab 441,229,Mexico,Grain
+Biryani 442,329,USA,Bakery
+Noodles 443,55,Japan,Fast Food
+Egg Omelette 444,182,USA,Snack
+Fries 445,258,China,Fast Food
+Salad 446,87,Japan,Fruit
+Ramen 447,132,Nigeria,Bakery
+Sandwich 448,302,Mexico,Dessert
+Tea 449,289,Japan,Grain
+Falafel 450,293,Mexico,Dessert
+Noodles 451,152,Japan,Fruit
+Coffee 452,470,Japan,Bakery
+Falafel 453,443,France,Fast Food
+Kebab 454,213,Middle East,Vegetable
+Juice 455,338,India,Protein
+Couscous 456,382,USA,Protein
+Dosa 457,377,France,Grain
+Noodles 458,199,Italy,Grain
+Tea 459,372,India,Grain
+Ramen 460,129,Nigeria,Fruit
+Biryani 461,180,UK,Beverage
+Chicken Curry 462,442,Italy,Dessert
+Milk 463,136,China,Fast Food
+Milk 464,209,Italy,Bakery
+Paneer 465,131,Middle East,Fruit
+Coffee 466,62,Japan,Bakery
+Kebab 467,386,China,Snack
+Fries 468,487,USA,Protein
+Chicken Curry 469,215,Italy,Protein
+Roti 470,311,Mexico,Bakery
+Rice 471,94,India,Protein
+Biryani 472,303,India,Snack
+Tea 473,362,Nigeria,Fruit
+Noodles 474,253,USA,Fast Food
+Croissant 475,349,Italy,Fast Food
+Milk 476,208,Italy,Beverage
+Ramen 477,212,India,Bakery
+Poha 478,98,China,Beverage
+Fish Fry 479,180,Nigeria,Snack
+Biryani 480,406,China,Fast Food
+Hummus 481,301,Italy,Fruit
+Dal 482,500,Italy,Fast Food
+Dal 483,392,India,Fast Food
+Paneer 484,368,France,Fast Food
+Fried Rice 485,166,France,Dessert
+Dosa 486,376,France,Fast Food
+Poha 487,97,Nigeria,Fast Food
+Biryani 488,65,China,Beverage
+Jollof Rice 489,182,Japan,Fast Food
+Rice 490,397,India,Beverage
+Pasta 491,427,India,Fruit
+Fries 492,279,China,Beverage
+Croissant 493,478,Japan,Dessert
+Ramen 494,403,China,Beverage
+Juice 495,156,USA,Beverage
+Fries 496,179,France,Beverage
+Paneer 497,399,Italy,Bakery
+Couscous 498,418,Mexico,Fast Food
+Salad 499,121,India,Bakery
+Milk 500,170,UK,Vegetable
+Croissant 501,127,India,Protein
+Croissant 502,156,Middle East,Vegetable
+Roti 503,189,India,Grain
+Paneer 504,53,Middle East,Vegetable
+Pasta 505,368,India,Protein
+Rice 506,84,France,Bakery
+Soup 507,86,UK,Vegetable
+Sushi 508,318,India,Vegetable
+Burger 509,353,UK,Beverage
+Dosa 510,378,UK,Grain
+Idli 511,423,UK,Dessert
+Soup 512,54,USA,Bakery
+Poha 513,203,China,Bakery
+Jollof Rice 514,204,Middle East,Protein
+Ramen 515,347,Japan,Grain
+Paneer 516,311,Middle East,Beverage
+Idli 517,439,Mexico,Dessert
+Steak 518,400,China,Beverage
+Steak 519,183,India,Fast Food
+Fried Rice 520,174,Italy,Bakery
+Pasta 521,70,France,Fruit
+Coffee 522,83,Japan,Snack
+Idli 523,111,France,Snack
+Steak 524,483,China,Beverage
+Pasta 525,144,Mexico,Beverage
+Soup 526,378,Middle East,Vegetable
+Coffee 527,55,Nigeria,Fruit
+Fried Rice 528,269,Nigeria,Protein
+Hummus 529,430,Japan,Snack
+Sandwich 530,241,China,Fast Food
+Milk 531,485,Middle East,Grain
+Falafel 532,418,Nigeria,Vegetable
+Pasta 533,401,UK,Snack
+Milk 534,144,Mexico,Vegetable
+Fish Fry 535,95,China,Fast Food
+Fries 536,173,Middle East,Grain
+Egg Omelette 537,328,France,Fruit
+Sushi 538,106,Nigeria,Dessert
+Fried Rice 539,245,Mexico,Bakery
+Sandwich 540,372,China,Beverage
+Paneer 541,56,UK,Fast Food
+Juice 542,308,UK,Snack
+Chicken Curry 543,119,India,Protein
+Couscous 544,412,UK,Beverage
+Paneer 545,223,Middle East,Snack
+Fries 546,129,UK,Vegetable
+Rice 547,189,Nigeria,Grain
+Fish Fry 548,491,Nigeria,Dessert
+Salad 549,103,China,Fruit
+Noodles 550,439,Nigeria,Bakery
+Juice 551,184,Nigeria,Grain
+Egg Omelette 552,239,Mexico,Beverage
+Dal 553,448,Mexico,Dessert
+Croissant 554,444,Italy,Fruit
+Falafel 555,205,UK,Fruit
+Idli 556,453,France,Vegetable
+Couscous 557,119,Nigeria,Bakery
+Soup 558,379,Mexico,Protein
+Poha 559,97,Nigeria,Beverage
+Steak 560,188,Italy,Beverage
+Couscous 561,83,Italy,Fruit
+Sandwich 562,315,China,Fruit
+Steak 563,159,India,Protein
+Kebab 564,316,Middle East,Fast Food
+Coffee 565,195,Nigeria,Grain
+Croissant 566,350,India,Bakery
+Roti 567,268,Nigeria,Protein
+Egg Omelette 568,321,UK,Bakery
+Fries 569,258,China,Grain
+Couscous 570,480,China,Protein
+Poha 571,353,Italy,Fruit
+Kebab 572,321,Nigeria,Beverage
+Couscous 573,82,Japan,Fruit
+Idli 574,431,Italy,Bakery
+Kebab 575,390,Middle East,Fast Food
+Fish Fry 576,169,USA,Snack
+Sushi 577,488,India,Grain
+Paneer 578,330,Japan,Fruit
+Couscous 579,238,France,Fruit
+Milk 580,146,Japan,Fast Food
+Milk 581,255,Mexico,Fruit
+Poha 582,157,UK,Protein
+Noodles 583,219,France,Beverage
+Poha 584,398,UK,Bakery
+Salad 585,313,UK,Grain
+Falafel 586,88,Nigeria,Dessert
+Croissant 587,320,Nigeria,Vegetable
+Biryani 588,446,Japan,Snack
+Fried Rice 589,335,Italy,Fruit
+Noodles 590,372,Middle East,Fast Food
+Croissant 591,381,Japan,Fast Food
+Steak 592,293,Japan,Fast Food
+Idli 593,335,Middle East,Vegetable
+Dal 594,433,USA,Fast Food
+Pizza 595,256,France,Beverage
+Biryani 596,459,Mexico,Grain
+Croissant 597,128,Japan,Vegetable
+Idli 598,454,India,Protein
+Fries 599,255,India,Grain
+Falafel 600,291,Mexico,Fruit
+Sushi 601,356,Italy,Dessert
+Roti 602,263,China,Snack
+Ramen 603,444,Nigeria,Grain
+Falafel 604,496,Middle East,Vegetable
+Pasta 605,347,Japan,Beverage
+Paneer 606,348,China,Vegetable
+Fries 607,357,UK,Snack
+Hummus 608,188,China,Vegetable
+Noodles 609,100,France,Protein
+Kebab 610,426,Middle East,Vegetable
+Pasta 611,279,France,Dessert
+Falafel 612,239,India,Protein
+Milk 613,109,Japan,Fruit
+Tea 614,304,India,Vegetable
+Juice 615,236,France,Dessert
+Roti 616,435,Japan,Fast Food
+Juice 617,199,Japan,Dessert
+Croissant 618,122,Mexico,Beverage
+Sandwich 619,324,Italy,Fruit
+Tea 620,455,USA,Bakery
+Jollof Rice 621,106,France,Grain
+Soup 622,282,China,Snack
+Croissant 623,257,India,Fruit
+Tea 624,278,Japan,Vegetable
+Egg Omelette 625,227,Middle East,Fast Food
+Coffee 626,157,UK,Bakery
+Croissant 627,238,UK,Dessert
+Croissant 628,474,Mexico,Protein
+Jollof Rice 629,159,Japan,Protein
+Egg Omelette 630,295,Italy,Dessert
+Jollof Rice 631,141,Middle East,Protein
+Milk 632,91,USA,Bakery
+Roti 633,376,Italy,Dessert
+Juice 634,100,Middle East,Vegetable
+Pizza 635,378,India,Bakery
+Steak 636,160,Mexico,Vegetable
+Dosa 637,474,Nigeria,Fast Food
+Dosa 638,217,Japan,Bakery
+Jollof Rice 639,347,Italy,Dessert
+Dosa 640,484,Italy,Fast Food
+Couscous 641,431,France,Beverage
+Jollof Rice 642,267,China,Fruit
+Dosa 643,461,India,Grain
+Hummus 644,130,India,Snack
+Fish Fry 645,213,India,Grain
+Fried Rice 646,320,France,Protein
+Jollof Rice 647,377,Nigeria,Fast Food
+Falafel 648,444,Nigeria,Snack
+Tea 649,103,France,Fast Food
+Falafel 650,348,USA,Dessert
+Steak 651,136,China,Bakery
+Steak 652,97,USA,Fast Food
+Biryani 653,495,India,Beverage
+Kebab 654,409,Nigeria,Protein
+Poha 655,164,India,Fruit
+Fries 656,269,India,Fast Food
+Falafel 657,384,UK,Fast Food
+Pasta 658,337,Mexico,Grain
+Hummus 659,175,France,Grain
+Chicken Curry 660,152,China,Protein
+Roti 661,494,Middle East,Protein
+Sushi 662,76,India,Fast Food
+Croissant 663,144,USA,Vegetable
+Poha 664,330,USA,Vegetable
+Biryani 665,287,Italy,Snack
+Couscous 666,370,Japan,Grain
+Couscous 667,286,Mexico,Bakery
+Fries 668,81,India,Vegetable
+Soup 669,296,Japan,Protein
+Sandwich 670,118,China,Beverage
+Biryani 671,270,Italy,Beverage
+Poha 672,319,USA,Grain
+Sushi 673,354,Mexico,Protein
+Noodles 674,247,India,Dessert
+Burger 675,175,Italy,Beverage
+Croissant 676,115,Japan,Bakery
+Egg Omelette 677,451,Italy,Fast Food
+Falafel 678,194,India,Dessert
+Falafel 679,220,Japan,Bakery
+Paneer 680,417,France,Fruit
+Fish Fry 681,127,UK,Fruit
+Fish Fry 682,222,UK,Vegetable
+Coffee 683,455,Nigeria,Protein
+Juice 684,261,UK,Fruit
+Rice 685,326,UK,Fast Food
+Salad 686,313,Middle East,Snack
+Roti 687,274,India,Fast Food
+Couscous 688,123,Italy,Grain
+Sandwich 689,134,USA,Snack
+Salad 690,388,USA,Bakery
+Chicken Curry 691,439,India,Vegetable
+Croissant 692,281,Nigeria,Grain
+Coffee 693,266,Middle East,Fruit
+Rice 694,155,Middle East,Bakery
+Fries 695,254,China,Snack
+Dosa 696,275,USA,Dessert
+Milk 697,135,India,Grain
+Kebab 698,444,Nigeria,Fast Food
+Paneer 699,236,Middle East,Vegetable
+Couscous 700,459,Nigeria,Snack
+Biryani 701,117,France,Grain
+Hummus 702,317,Italy,Snack
+Fish Fry 703,242,Nigeria,Fruit
+Couscous 704,264,Mexico,Snack
+Fish Fry 705,301,India,Dessert
+Salad 706,245,Middle East,Beverage
+Soup 707,124,Japan,Snack
+Coffee 708,329,Italy,Fruit
+Dal 709,266,UK,Snack
+Paneer 710,489,France,Grain
+Sandwich 711,209,Japan,Snack
+Kebab 712,413,China,Protein
+Egg Omelette 713,128,Mexico,Bakery
+Milk 714,175,USA,Fast Food
+Tea 715,250,China,Protein
+Egg Omelette 716,193,China,Grain
+Egg Omelette 717,399,China,Fast Food
+Egg Omelette 718,86,India,Dessert
+Sushi 719,55,China,Fruit
+Soup 720,420,France,Dessert
+Fries 721,103,France,Fruit
+Egg Omelette 722,87,UK,Vegetable
+Rice 723,108,India,Fruit
+Fish Fry 724,488,Middle East,Vegetable
+Idli 725,328,Mexico,Snack
+Coffee 726,184,France,Grain
+Egg Omelette 727,182,Japan,Snack
+Coffee 728,375,Nigeria,Protein
+Tea 729,165,Mexico,Fast Food
+Sandwich 730,180,Mexico,Vegetable
+Falafel 731,133,Italy,Fruit
+Roti 732,122,Nigeria,Vegetable
+Hummus 733,420,USA,Bakery
+Burger 734,196,UK,Grain
+Chicken Curry 735,52,UK,Dessert
+Milk 736,204,Italy,Vegetable
+Noodles 737,52,Japan,Snack
+Noodles 738,396,UK,Fruit
+Fish Fry 739,353,UK,Fast Food
+Paneer 740,136,India,Vegetable
+Egg Omelette 741,220,India,Bakery
+Salad 742,126,China,Fast Food
+Burger 743,389,Middle East,Fast Food
+Idli 744,365,China,Vegetable
+Juice 745,122,Middle East,Dessert
+Soup 746,378,India,Grain
+Fish Fry 747,425,USA,Grain
+Noodles 748,499,Italy,Snack
+Steak 749,61,UK,Dessert
+Noodles 750,327,Italy,Bakery
+Chicken Curry 751,53,France,Beverage
+Milk 752,366,France,Fruit
+Dal 753,262,Nigeria,Bakery
+Idli 754,94,UK,Bakery
+Pizza 755,320,China,Fruit
+Croissant 756,88,Italy,Fruit
+Fried Rice 757,392,Japan,Protein
+Soup 758,73,China,Beverage
+Ramen 759,391,China,Fruit
+Poha 760,128,India,Bakery
+Biryani 761,240,USA,Protein
+Sushi 762,398,China,Snack
+Juice 763,462,Nigeria,Protein
+Dosa 764,227,India,Protein
+Tea 765,367,China,Snack
+Fish Fry 766,329,Italy,Vegetable
+Fish Fry 767,179,Middle East,Protein
+Fried Rice 768,311,Italy,Fruit
+Sushi 769,128,USA,Bakery
+Tea 770,220,Japan,Fast Food
+Tea 771,315,India,Fast Food
+Coffee 772,405,Japan,Grain
+Poha 773,366,France,Beverage
+Burger 774,162,Mexico,Bakery
+Croissant 775,253,Nigeria,Vegetable
+Egg Omelette 776,384,Mexico,Snack
+Croissant 777,157,Middle East,Protein
+Falafel 778,314,France,Vegetable
+Paneer 779,452,Mexico,Fast Food
+Noodles 780,130,Japan,Fruit
+Dosa 781,320,India,Grain
+Soup 782,212,UK,Bakery
+Chicken Curry 783,494,USA,Snack
+Rice 784,313,USA,Snack
+Dosa 785,71,China,Vegetable
+Coffee 786,227,USA,Dessert
+Dal 787,220,Nigeria,Fast Food
+Sushi 788,59,France,Vegetable
+Fries 789,125,India,Dessert
+Falafel 790,345,Middle East,Dessert
+Fried Rice 791,190,Middle East,Snack
+Soup 792,495,Nigeria,Bakery
+Falafel 793,334,France,Bakery
+Croissant 794,469,India,Dessert
+Paneer 795,426,Middle East,Snack
+Croissant 796,221,Middle East,Grain
+Steak 797,421,Italy,Dessert
+Falafel 798,349,UK,Grain
+Ramen 799,490,Middle East,Grain
+Ramen 800,453,India,Dessert
+Chicken Curry 801,85,UK,Fast Food
+Couscous 802,458,USA,Beverage
+Milk 803,65,India,Beverage
+Kebab 804,381,Nigeria,Beverage
+Egg Omelette 805,235,Middle East,Fruit
+Ramen 806,191,Middle East,Beverage
+Jollof Rice 807,96,China,Vegetable
+Paneer 808,466,UK,Fruit
+Dal 809,276,China,Beverage
+Roti 810,278,Italy,Fast Food
+Coffee 811,462,Italy,Protein
+Pasta 812,62,Japan,Fruit
+Paneer 813,244,France,Vegetable
+Ramen 814,398,Japan,Fruit
+Falafel 815,253,Mexico,Protein
+Dosa 816,197,Japan,Bakery
+Paneer 817,251,China,Fruit
+Sandwich 818,302,India,Bakery
+Sandwich 819,197,Italy,Grain
+Milk 820,188,Mexico,Bakery
+Tea 821,460,USA,Protein
+Dal 822,76,USA,Vegetable
+Coffee 823,434,USA,Bakery
+Kebab 824,427,India,Beverage
+Fries 825,88,Nigeria,Fast Food
+Pasta 826,398,UK,Bakery
+Noodles 827,416,Middle East,Grain
+Roti 828,363,Middle East,Grain
+Pizza 829,383,Japan,Snack
+Coffee 830,420,Middle East,Protein
+Tea 831,83,Italy,Grain
+Pizza 832,424,Nigeria,Fruit
+Idli 833,478,India,Protein
+Fries 834,145,Nigeria,Bakery
+Pizza 835,453,India,Grain
+Hummus 836,371,India,Snack
+Salad 837,105,China,Beverage
+Kebab 838,84,France,Bakery
+Burger 839,338,Italy,Vegetable
+Biryani 840,382,Japan,Protein
+Egg Omelette 841,312,Mexico,Bakery
+Roti 842,207,Nigeria,Snack
+Dal 843,234,Middle East,Snack
+Falafel 844,341,UK,Vegetable
+Steak 845,463,UK,Fast Food
+Tea 846,174,France,Protein
+Dosa 847,95,India,Fast Food
+Poha 848,197,Japan,Beverage
+Roti 849,104,Japan,Protein
+Couscous 850,154,UK,Dessert
+Chicken Curry 851,398,USA,Fruit
+Juice 852,93,Mexico,Vegetable
+Steak 853,399,France,Dessert
+Pizza 854,436,Nigeria,Beverage
+Salad 855,133,Mexico,Fruit
+Croissant 856,277,China,Protein
+Ramen 857,498,Middle East,Dessert
+Pasta 858,347,France,Vegetable
+Ramen 859,309,UK,Fruit
+Noodles 860,222,UK,Dessert
+Soup 861,379,UK,Protein
+Chicken Curry 862,437,China,Snack
+Noodles 863,151,UK,Beverage
+Soup 864,356,Middle East,Bakery
+Kebab 865,308,India,Grain
+Sushi 866,200,China,Fruit
+Couscous 867,441,USA,Dessert
+Kebab 868,439,Nigeria,Fruit
+Hummus 869,393,China,Snack
+Couscous 870,78,UK,Fast Food
+Coffee 871,264,USA,Beverage
+Soup 872,452,China,Grain
+Egg Omelette 873,72,China,Grain
+Milk 874,289,Japan,Snack
+Egg Omelette 875,483,Japan,Fruit
+Sandwich 876,212,UK,Snack
+Sandwich 877,259,UK,Snack
+Croissant 878,262,Italy,Bakery
+Dosa 879,353,Mexico,Fruit
+Pizza 880,323,Japan,Bakery
+Ramen 881,74,France,Fast Food
+Dosa 882,131,Middle East,Bakery
+Couscous 883,362,Nigeria,Bakery
+Salad 884,329,Japan,Fast Food
+Steak 885,128,USA,Vegetable
+Coffee 886,296,Middle East,Snack
+Tea 887,324,Middle East,Snack
+Egg Omelette 888,408,Italy,Dessert
+Falafel 889,245,Middle East,Fruit
+Fish Fry 890,466,Italy,Fruit
+Juice 891,99,USA,Protein
+Dal 892,178,Middle East,Protein
+Sushi 893,147,Nigeria,Dessert
+Poha 894,320,Middle East,Grain
+Dosa 895,422,UK,Snack
+Sandwich 896,340,USA,Beverage
+Fish Fry 897,209,Mexico,Bakery
+Soup 898,480,USA,Protein
+Roti 899,155,India,Beverage
+Fish Fry 900,69,Middle East,Snack
+Hummus 901,324,China,Beverage
+Chicken Curry 902,127,USA,Beverage
+Pizza 903,266,India,Grain
+Jollof Rice 904,371,China,Fast Food
+Juice 905,65,Middle East,Fruit
+Tea 906,160,Nigeria,Vegetable
+Steak 907,127,Japan,Grain
+Juice 908,487,France,Vegetable
+Croissant 909,177,Mexico,Protein
+Fries 910,327,Japan,Fruit
+Rice 911,470,India,Bakery
+Pasta 912,426,Italy,Vegetable
+Falafel 913,288,India,Dessert
+Sandwich 914,150,Nigeria,Snack
+Falafel 915,267,China,Bakery
+Falafel 916,215,Nigeria,Fast Food
+Pizza 917,348,USA,Protein
+Dal 918,194,France,Fast Food
+Rice 919,282,Middle East,Fast Food
+Burger 920,54,Japan,Beverage
+Tea 921,105,Italy,Vegetable
+Burger 922,54,France,Grain
+Salad 923,388,UK,Bakery
+Egg Omelette 924,443,UK,Snack
+Biryani 925,425,China,Protein
+Biryani 926,242,Mexico,Snack
+Tea 927,259,Nigeria,Protein
+Juice 928,300,France,Dessert
+Salad 929,132,Nigeria,Vegetable
+Poha 930,312,Italy,Protein
+Paneer 931,223,India,Bakery
+Sandwich 932,474,Japan,Fast Food
+Kebab 933,183,Japan,Grain
+Fish Fry 934,439,UK,Dessert
+Dosa 935,419,Middle East,Beverage
+Roti 936,441,Japan,Grain
+Burger 937,252,France,Protein
+Fries 938,442,China,Fruit
+Soup 939,51,India,Bakery
+Burger 940,458,Nigeria,Protein
+Pasta 941,480,USA,Protein
+Soup 942,74,Japan,Beverage
+Fries 943,284,France,Protein
+Fish Fry 944,267,France,Dessert
+Biryani 945,369,Mexico,Vegetable
+Coffee 946,373,USA,Protein
+Rice 947,300,India,Protein
+Steak 948,277,USA,Vegetable
+Steak 949,433,Italy,Beverage
+Rice 950,198,Middle East,Bakery
+Ramen 951,345,Nigeria,Snack
+Roti 952,341,China,Vegetable
+Paneer 953,462,Nigeria,Fast Food
+Falafel 954,278,France,Protein
+Pasta 955,142,India,Bakery
+Idli 956,124,Middle East,Fruit
+Falafel 957,389,Nigeria,Beverage
+Salad 958,345,France,Dessert
+Ramen 959,383,UK,Fast Food
+Soup 960,194,China,Vegetable
+Roti 961,190,USA,Protein
+Milk 962,158,Mexico,Beverage
+Fish Fry 963,321,China,Fruit
+Noodles 964,56,Italy,Dessert
+Chicken Curry 965,96,Italy,Grain
+Croissant 966,115,India,Grain
+Chicken Curry 967,303,Italy,Beverage
+Poha 968,388,India,Dessert
+Jollof Rice 969,338,France,Beverage
+Kebab 970,238,China,Snack
+Paneer 971,319,Mexico,Beverage
+Tea 972,278,Japan,Snack
+Noodles 973,315,France,Dessert
+Noodles 974,238,India,Grain
+Pasta 975,464,Middle East,Beverage
+Fish Fry 976,96,UK,Fruit
+Burger 977,388,Nigeria,Protein
+Kebab 978,123,Middle East,Bakery
+Noodles 979,471,Nigeria,Protein
+Sandwich 980,398,Italy,Bakery
+Pasta 981,330,Middle East,Bakery
+Salad 982,498,Italy,Vegetable
+Kebab 983,344,Italy,Beverage
+Soup 984,305,Mexico,Vegetable
+Burger 985,72,Japan,Vegetable
+Idli 986,490,Nigeria,Protein
+Soup 987,359,France,Protein
+Dosa 988,496,USA,Snack
+Pizza 989,325,Mexico,Fast Food
+Dal 990,242,France,Vegetable
+Tea 991,255,UK,Bakery
+Jollof Rice 992,369,China,Dessert
+Steak 993,117,France,Fruit
+Ramen 994,481,Middle East,Vegetable
+Couscous 995,452,Japan,Vegetable
+Egg Omelette 996,108,Middle East,Grain
+Paneer 997,454,France,Grain
+Roti 998,409,Italy,Vegetable
+Chicken Curry 999,69,Middle East,Fruit

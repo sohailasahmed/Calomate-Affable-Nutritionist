@@ -1,17 +1,307 @@
 {% extends 'base.html' %}
-
 {% block content %}
 
-<h2>Add Meal</h2>
+<div class="container mt-5">
 
-<div class="card p-4 shadow">
+<div class="card shadow-lg border-0 rounded-4 p-4">
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-primary">Add Meal</button>
-</form>
+<h1 class="fw-bold mb-4 text-center">
+Add Meal 🍽️
+</h1>
+
+<form method="POST" id="mealForm">
+{% csrf_token %}
+
+<!-- SEARCH + BUTTON -->
+<div class="row g-3 align-items-end mb-3">
+
+<div class="col-md-8">
+<label class="form-label fw-semibold">Search Food</label>
+
+<input type="text"
+id="foodSearch"
+class="form-control form-control-lg rounded-3"
+placeholder="Type food name..."
+autocomplete="off">
+
+<input type="hidden" name="food" id="foodId">
+
+<div id="foodList"
+class="list-group shadow position-absolute w-50"
+style="z-index:999; max-height:280px; overflow-y:auto; display:none;">
+</div>
 
 </div>
+
+<div class="col-md-4">
+<label class="form-label text-white">.</label>
+
+<button type="button"
+class="btn btn-outline-primary w-100 rounded-3"
+onclick="showCustomFood()">
++ Add New Food
+</button>
+</div>
+
+</div>
+
+<!-- CUSTOM FOOD -->
+<div id="customFoodBox"
+class="card border-0 bg-light p-3 mb-4"
+style="display:none;">
+
+<h5 class="mb-3">Add Custom Food</h5>
+
+<div class="row g-3">
+
+<div class="col-md-6">
+<input type="text"
+id="newFoodName"
+class="form-control"
+placeholder="Food Name">
+</div>
+
+<div class="col-md-4">
+<input type="number"
+id="newFoodCal"
+class="form-control"
+placeholder="Calories per 100 g/ml ">
+</div>
+
+<div class="col-md-2">
+<button type="button"
+class="btn btn-success w-100"
+onclick="saveFood()">
+Save
+</button>
+</div>
+
+</div>
+
+</div>
+
+<!-- QUANTITY -->
+<label class="form-label fw-semibold">Quantity</label>
+
+<div class="row g-3 mb-4">
+
+<div class="col-md-6">
+<input type="number"
+id="qty"
+class="form-control form-control-lg"
+value="1">
+<input type="hidden" name="quantity" id="realQty">
+</div>
+
+<div class="col-md-6">
+<select id="unit"
+class="form-select form-select-lg">
+<option value="1">gram</option>
+<option value="100">100 gram</option>
+<option value="1000">kg</option>
+<option value="240">cup</option>
+<option value="250">bowl</option>
+<option value="15">tbsp</option>
+<option value="5">tsp</option>
+<option value="50">piece</option>
+<option value="1">ml</option>
+<option value="1000">liter</option>
+</select>
+</div>
+
+</div>
+
+<!-- MEAL TYPE -->
+<label class="form-label fw-semibold">Meal Type</label>
+
+<select name="meal_type"
+class="form-select form-select-lg mb-4">
+<option value="breakfast">Breakfast 🌅</option>
+<option value="lunch">Lunch ☀️</option>
+<option value="dinner">Dinner 🌙</option>
+<option value="snack">Snack 🍫</option>
+</select>
+
+<!-- CALORIES -->
+<div class="alert alert-info rounded-4 text-center p-4 fs-5 mb-4">
+Estimated Calories:
+<strong class="text-dark">
+<span id="calories">0</span> kcal
+</strong>
+</div>
+
+<button class="btn btn-success btn-lg w-100 rounded-4 shadow">
+Add Meal
+</button>
+
+</form>
+</div>
+</div>
+
+{{ foods|json_script:"foods-data" }}
+
+<script>
+
+const foods = JSON.parse(
+document.getElementById("foods-data").textContent
+);
+
+let selectedCal = 0;
+
+const searchBox = document.getElementById("foodSearch");
+const foodList = document.getElementById("foodList");
+const foodId = document.getElementById("foodId");
+const qty = document.getElementById("qty");
+const unit = document.getElementById("unit");
+const realQty = document.getElementById("realQty");
+
+function showFoods(filter=""){
+
+foodList.innerHTML="";
+
+let matched = foods.filter(f =>
+f.name.toLowerCase().includes(filter.toLowerCase())
+);
+
+matched.slice(0,40).forEach(food=>{
+
+let item=document.createElement("button");
+item.type="button";
+item.className="list-group-item list-group-item-action";
+item.innerText=food.name;
+
+item.onclick=function(){
+
+searchBox.value=food.name;
+foodId.value=food.id;
+
+selectedCal=parseFloat(food.calories_per_100g);
+
+setSmartUnits(food.name);
+
+foodList.style.display="none";
+
+calculateCalories();
+
+};
+
+foodList.appendChild(item);
+
+});
+
+foodList.style.display="block";
+}
+
+searchBox.addEventListener("focus", ()=>showFoods());
+searchBox.addEventListener("keyup", ()=>showFoods(searchBox.value));
+
+document.addEventListener("click", function(e){
+if(e.target !== searchBox && !foodList.contains(e.target)){
+foodList.style.display="none";
+}
+});
+
+function setSmartUnits(name){
+
+name = name.toLowerCase();
+
+if(name.includes("milk") || name.includes("juice") || name.includes("tea") || name.includes("coffee")){
+
+unit.innerHTML = `
+<option value="1">ml</option>
+<option value="250">glass</option>
+<option value="1000">liter</option>
+`;
+
+}
+
+else if(name.includes("egg")){
+
+unit.innerHTML = `
+<option value="50">piece</option>
+<option value="100">2 pieces</option>
+`;
+
+}
+
+else if(name.includes("pizza")){
+
+unit.innerHTML = `
+<option value="100">slice</option>
+<option value="300">3 slices</option>
+`;
+
+}
+
+else if(name.includes("rice") || name.includes("biryani") || name.includes("pasta")){
+
+unit.innerHTML = `
+<option value="250">bowl</option>
+<option value="240">cup</option>
+`;
+
+}
+
+else if(name.includes("burger") || name.includes("sandwich")){
+
+unit.innerHTML = `
+<option value="150">piece</option>
+<option value="300">2 pieces</option>
+`;
+
+}
+
+else{
+
+unit.innerHTML = `
+<option value="1">gram</option>
+<option value="100">100 gram</option>
+<option value="1000">kg</option>
+`;
+
+}
+
+}
+
+function calculateCalories(){
+
+let grams = (parseFloat(qty.value)||0) *
+(parseFloat(unit.value)||0);
+
+realQty.value = grams;
+
+let total = (selectedCal * grams / 100).toFixed(1);
+
+document.getElementById("calories").innerText = total;
+
+}
+
+qty.addEventListener("input", calculateCalories);
+unit.addEventListener("change", calculateCalories);
+
+function showCustomFood(){
+
+document.getElementById("customFoodBox").style.display="block";
+
+}
+
+function saveFood(){
+
+let name=document.getElementById("newFoodName").value;
+let cal=document.getElementById("newFoodCal").value;
+
+fetch("/diet/add-food/",{
+method:"POST",
+headers:{
+"Content-Type":"application/x-www-form-urlencoded",
+"X-CSRFToken":"{{ csrf_token }}"
+},
+body:`name=${name}&calories=${cal}`
+})
+.then(()=>location.reload());
+
+}
+
+</script>
 
 {% endblock %}
