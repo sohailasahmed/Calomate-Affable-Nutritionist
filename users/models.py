@@ -28,6 +28,8 @@ class UserProfile(models.Model):
     steps = models.IntegerField(default=0)
     sleep_hours = models.FloatField(default=0)
 
+    last_tracker_reset = models.DateField(null=True, blank=True)
+
     def __str__(self):
         return self.user.username
     

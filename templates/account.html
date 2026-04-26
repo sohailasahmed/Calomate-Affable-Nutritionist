@@ -75,6 +75,21 @@
             </form>
 
         </div>
+        <br>
+                <!-- RECOMMENDATIONS -->
+        <div class="card shadow border-0 rounded-4 p-4 mb-4">
+
+            <h4 class="mb-3">Recommendations 🍎</h4>
+
+            <ul class="mb-0">
+                {% for item in recommendations %}
+                    <li class="mb-2">{{ item }}</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+
     </div>
 
 
@@ -84,18 +99,18 @@
         <!-- PROFILE CARD -->
         <div class="card shadow-lg border-0 rounded-4 p-4 text-center mb-4">
 
-            {% if form.instance.profile_pic %}
-                <img src="{{ form.instance.profile_pic.url }}"
-                     class="mx-auto mb-3"
-                     width="120"
-                     height="120"
-                     style="border-radius:50%; object-fit:cover;">
+            {% if profile.profile_pic %}
+            <img src="{{ profile.profile_pic.url }}"
+                width="120"
+                height="120"
+                class="mx-auto mb-3"
+                style="border-radius:50%; object-fit:cover;">
             {% else %}
-                <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
-                     class="mx-auto mb-3"
-                     width="120">
+            <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+                width="120"
+                class="mx-auto mb-3">
             {% endif %}
-
+            
             <h4 class="fw-bold">{{ request.user.username }}</h4>
             <p class="text-muted">{{ form.instance.city }}</p>
 
@@ -109,8 +124,8 @@
                 <div class="col-6">
                     <h6>Calories</h6>
                     <h5 class="text-success">
-                        {% if calories %}
-                            {{ calories }}
+                        {% if recommended_target %}
+                            {{ recommended_target }}
                         {% else %}
                             --
                         {% endif %}
@@ -179,14 +194,14 @@
                 </div>
 
                 <div class="progress mt-2" style="height:10px;">
-                    <div class="progress-bar bg-dark"
+                    <div class="progress-bar bg-warning"
                         style="--sleeps: {{ sleep_percent }}%; width: var(--sleeps);">
                     </div>
                 </div>
 
                 <form method="POST" class="mt-2">
                     {% csrf_token %}
-                    <button name="add_sleep" class="btn btn-sm btn-dark w-100">
+                    <button name="add_sleep" class="btn btn-sm btn-warning w-100">
                         +1 Hour
                     </button>
                 </form>
@@ -194,19 +209,6 @@
 
         </div>
 
-
-        <!-- RECOMMENDATIONS -->
-        <div class="card shadow border-0 rounded-4 p-4 mb-4">
-
-            <h4 class="mb-3">Recommendations 🍎</h4>
-
-            <ul class="mb-0">
-                {% for item in recommendations %}
-                    <li class="mb-2">{{ item }}</li>
-                {% endfor %}
-            </ul>
-
-        </div>
 
 
         <!-- BUTTONS -->

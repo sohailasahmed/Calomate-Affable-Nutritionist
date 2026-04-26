@@ -7,6 +7,7 @@ from datetime import date
 from django.contrib.auth.decorators import login_required
 from collections import defaultdict
 from django.views.decorators.http import require_POST
+from core.services import get_personal_target
 
 @login_required
 def add_meal(request):
@@ -123,7 +124,8 @@ def dashboard(request):
     meal_calories = list(meal_group.values())
 
     # ---------------- DIFFERENCE ----------------
-    difference = calories_needed - total_calories
+    target = get_personal_target(request.user)
+    difference = target - total_calories
 
     # ---------------- FOOD SUGGESTIONS ----------------
     suggestions = []
@@ -146,7 +148,7 @@ def dashboard(request):
     elif difference > 0:
         exercises = ["Brisk walk 20 mins", "Cycling", "Jogging"]
     else:
-        exercises = ["Running 30 mins", "HIIT", "Gym Workout"]
+        exercises = ["Running 30 mins", "Jump Rope", "High-Intensity Interval Training (HIIT)"]
 
     # ---------------- FEEDBACK ----------------
     if difference > 0:
@@ -171,12 +173,14 @@ def dashboard(request):
         progress_color = "bg-warning"
     else:
         progress_color = "bg-danger"
+
+    
     # ---------------- SEND TO TEMPLATE ----------------
     return render(request, 'diet/dashboard.html', {
         'meals': meals,
         'today': today,
         'total_calories': total_calories,
-        'calories_needed': calories_needed,
+        'calories_needed': target,
         'food_names': json.dumps(food_names),
         'calories': json.dumps(calories),
         'percentages': json.dumps(percentages),
@@ -188,4 +192,5 @@ def dashboard(request):
         'progress_percent': progress_percent,
         'raw_percent': raw_percent,
         'progress_color': progress_color,
+        "recommended_target": target,
     })

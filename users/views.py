@@ -10,6 +10,7 @@ from datetime import date
 import requests
 from django.conf import settings
 from .models import UserProfile, WaterIntake, DailySteps
+from core.services import get_personal_target
 from datetime import date
 
 API_KEY = settings.API_KEY
@@ -17,6 +18,14 @@ API_KEY = settings.API_KEY
 @login_required
 def account(request):
     profile, created = UserProfile.objects.get_or_create(user=request.user)
+    today = date.today()
+
+    if profile.last_tracker_reset != today:
+        profile.water_glasses = 0
+        profile.steps = 0
+        profile.sleep_hours = 0
+        profile.last_tracker_reset = today
+        profile.save()
 
     if request.method == "POST":
 
@@ -36,11 +45,15 @@ def account(request):
             profile.save()
             return redirect("account")
 
-        # Normal profile form save
+        # Save profile form
         form = UserProfileForm(request.POST, request.FILES, instance=profile)
+
         if form.is_valid():
-            form.save()
+            obj = form.save()
+            print("Saved:", obj.profile_pic)
             return redirect("account")
+        else:
+            print(form.errors)
 
     else:
         form = UserProfileForm(instance=profile)
@@ -154,6 +167,7 @@ def account(request):
     steps_percent = min(int((profile.steps / 10000) * 100), 100)
     sleep_percent = min(int((profile.sleep_hours / 8) * 100), 100)
 
+    target = get_personal_target(request.user)
 
     context = {
         "form": form,
@@ -168,6 +182,7 @@ def account(request):
         "sleep_percent": sleep_percent,
         "steps": steps_obj.steps,
         "steps_percent": steps_percent,
+        "recommended_target": target,
         "calories_burned": calories_burned,
     }
 

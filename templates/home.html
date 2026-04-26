@@ -1,97 +1,210 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<h2 class="mb-4">Analytics Dashboard 📊</h2>
-
-<!-- Top 10 Foods -->
-<div class="card p-3 shadow mb-4">
-    <h4>Top 10 Foods 🍽️</h4>
-    <canvas id="topFoods"></canvas>
-</div>
-
-<!-- Scatter Plot -->
-<div class="card p-3 shadow mb-4">
-    <h4>Calorie Density (Quantity vs Calories)</h4>
-    <canvas id="scatterChart"></canvas>
-</div>
-
-<!-- Daily vs Target -->
-<div class="card p-3 shadow mb-4">
-    <h4>Daily vs Target Calories</h4>
-    <canvas id="dailyChart"></canvas>
-</div>
-
-<!-- Cumulative Trend -->
-<div class="card p-3 shadow mb-4">
-    <h4>Cumulative Calories Trend 📈</h4>
-    <canvas id="cumulativeChart"></canvas>
-</div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<div class="container-fluid py-4">
+
+<h2 class="fw-bold mb-4">Analytics Dashboard 📊</h2>
+
+<!-- KPI ROW 1 -->
+<div class="row g-3 mb-4">
+
+    <div class="col-md-3">
+        <div class="card shadow border-0 p-3 bg-warning h-100">
+            <small>🔥 Streak</small>
+            <h3>{{ kpi.streak }} Days</h3>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow border-0 p-3 bg-success text-white h-100">
+            <small>🍽 Meals Logged</small>
+            <h3>{{ kpi.total_meals }}</h3>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow border-0 p-3 bg-primary text-white h-100">
+            <small>⚖ Avg Calories</small>
+            <h3>{{ kpi.avg_calories }}</h3>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow border-0 p-3 bg-info text-white h-100" >
+            <small>🎯 Personalized Goal</small>
+            <h3>{{ recommended_target }}</h3>
+        </div>
+    </div>
+
+</div>
+
+<!-- KPI ROW 2 -->
+
+<div class="row g-3 mb-4">
+
+    <div class="col-md-2">
+        <div class="card p-3 shadow text-center">
+            <small>🍽 Today Calories</small>
+            <h4>{{ today_kpi.calories }}</h4>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="card p-3 shadow text-center">
+            <small>💧 Water</small>
+            <h4>{{ today_kpi.water }}</h4>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="card p-3 shadow text-center">
+            <small>👟 Steps</small>
+            <h4>{{ today_kpi.steps }}</h4>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="card p-3 shadow text-center">
+            <small>😴 Sleep</small>
+            <h4>{{ today_kpi.sleep }}</h4>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-3 shadow text-center  text-white">
+            <small>📈 Wellness Status</small>
+            <h4>Healthy Track</h4>
+        </div>
+    </div>
+
+</div>
+
+<!-- Charts Row 1 -->
+<div class="row g-4 mb-4">
+
+    <div class="col-lg-6">
+        <div class="card p-3 shadow border-0">
+            <h5>Weekly Calories vs Goal</h5>
+            <canvas id="weeklyChart"></canvas>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card p-3 shadow border-0">
+            <h5>Meals Logged (Last 7 Days)</h5>
+            <canvas id="loggedChart"></canvas>
+        </div>
+    </div>
+
+</div>
+
+<!-- Charts Row 2 -->
+<div class="row g-4">
+
+    <div class="col-lg-6">
+        <div class="card p-3 shadow border-0">
+            <h5>Top Foods</h5>
+            <canvas id="foodChart"></canvas>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card p-3 shadow border-0">
+            <h5>Calories by Weekday</h5>
+            <canvas id="weekdayChart"></canvas>
+        </div>
+    </div>
+
+</div>
+
+<!-- Charts Row 3 -->
+<div class="row g-4 mt-1">
+
+    <div class="col-lg-12">
+        <div class="card p-3 shadow border-0">
+            <h5>30 Day Trend</h5>
+            <canvas id="monthChart"></canvas>
+        </div>
+    </div>
+
+</div>
+
+</div>
+
 <script>
-// Top Foods
-new Chart(document.getElementById('topFoods'), {
-    type: 'bar',
-    data: {
-        labels: JSON.parse('{{ top_food_labels|escapejs }}'),
-        datasets: [{
-            label: 'Calories',
-            data: JSON.parse('{{ top_food_data|escapejs }}')
-        }]
-    }
+
+/* Weekly Calories */
+new Chart(document.getElementById('weeklyChart'), {
+type:'line',
+data:{
+labels: JSON.parse('{{ daily_labels|escapejs }}'),
+datasets:[
+{
+label:'Consumed',
+data: JSON.parse('{{ daily_calories|escapejs }}'),
+borderWidth:3,
+tension:0.4
+},
+{
+label:'Goal',
+data: JSON.parse('{{ target_calories|escapejs }}'),
+borderDash:[5,5]
+}
+]
+}
 });
 
-// Scatter Plot
-new Chart(document.getElementById('scatterChart'), {
-    type: 'scatter',
-    data: {
-        datasets: [{
-            label: 'Foods',
-            data: JSON.parse('{{ scatter_data|escapejs }}')
-        }]
-    },
-    options: {
-        scales: {
-            x: {
-                title: { display: true, text: 'Quantity' }
-            },
-            y: {
-                title: { display: true, text: 'Calories' }
-            }
-        }
-    }
+/* Logged Meals */
+new Chart(document.getElementById('loggedChart'), {
+type:'bar',
+data:{
+labels: JSON.parse('{{ logged_labels|escapejs }}'),
+datasets:[{
+label:'Meals',
+data: JSON.parse('{{ logged_data|escapejs }}')
+}]
+}
 });
 
-// Daily vs Target
-new Chart(document.getElementById('dailyChart'), {
-    type: 'line',
-    data: {
-        labels: JSON.parse('{{ daily_labels|escapejs }}'),
-        datasets: [
-            {
-                label: 'Consumed',
-                data: JSON.parse('{{ daily_calories|escapejs }}')
-            },
-            {
-                label: 'Target',
-                data: JSON.parse('{{ target_calories|escapejs }}')
-            }
-        ]
-    }
+/* Top Foods */
+new Chart(document.getElementById('foodChart'), {
+type:'bar',
+data:{
+labels: JSON.parse('{{ top_food_labels|escapejs }}'),
+datasets:[{
+label:'Calories',
+data: JSON.parse('{{ top_food_data|escapejs }}')
+}]
+}
 });
 
-// Cumulative Trend
-new Chart(document.getElementById('cumulativeChart'), {
-    type: 'line',
-    data: {
-        labels: JSON.parse('{{ cumulative_labels|escapejs }}'),
-        datasets: [{
-            label: 'Total Calories',
-            data: JSON.parse('{{ cumulative_data|escapejs }}')
-        }]
-    }
+/* Weekday */
+new Chart(document.getElementById('weekdayChart'), {
+type:'bar',
+data:{
+labels: JSON.parse('{{ weekday_labels|escapejs }}'),
+datasets:[{
+label:'Calories',
+data: JSON.parse('{{ weekday_data|escapejs }}')
+}]
+}
 });
+
+/* Monthly */
+new Chart(document.getElementById('monthChart'), {
+type:'line',
+data:{
+labels: JSON.parse('{{ month_labels|escapejs }}'),
+datasets:[{
+label:'Calories',
+data: JSON.parse('{{ month_data|escapejs }}'),
+tension:0.4
+}]
+}
+});
+
 </script>
 
 {% endblock %}
