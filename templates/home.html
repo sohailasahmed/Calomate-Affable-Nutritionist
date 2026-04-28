@@ -5,126 +5,142 @@
 
 <div class="container-fluid py-4">
 
-<h2 class="fw-bold mb-4">Analytics Dashboard 📊</h2>
+<!-- HEADER -->
+<div class="card border-0 shadow-lg rounded-4 p-4 mb-4">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+
+        <div>
+            <span class="badge bg-primary px-3 py-2 mb-2">Advanced Analytics</span>
+            <h2 class="fw-bold mb-1">Analytics Dashboard 📊</h2>
+            <p class="text-muted mb-0">
+                Monitor nutrition consistency, trends and wellness progress.
+            </p>
+        </div>
+
+        <div class="text-md-end">
+            <small class="text-muted d-block">Today's Personalized Goal</small>
+            <h4 class="fw-bold text-success mb-0 mt-2">{{ recommended_target }}</h4>
+        </div>
+
+    </div>
+</div>
+
 
 <!-- KPI ROW 1 -->
-<div class="row g-3 mb-4">
+<div class="row g-4 mb-4">
 
     <div class="col-md-3">
-        <div class="card shadow border-0 p-3 bg-warning h-100">
-            <small>🔥 Streak</small>
-            <h3>{{ kpi.streak }} Days</h3>
+        <div class="card border-0 shadow rounded-4 p-4 text-center h-100 border-custom">
+            <small class="text-muted">🔥 Streak</small>
+            <h3 class="fw-bold mt-2">{{ kpi.streak }} Days</h3>
         </div>
     </div>
 
     <div class="col-md-3">
-        <div class="card shadow border-0 p-3 bg-success text-white h-100">
-            <small>🍽 Meals Logged</small>
-            <h3>{{ kpi.total_meals }}</h3>
+        <div class="card border-0 shadow rounded-4 p-4 text-center h-100">
+            <small class="text-muted">🍽 Meals Logged</small>
+            <h2 class="fw-bold text-success mt-2">{{ kpi.total_meals }}</h2>
         </div>
     </div>
 
-    <div class="col-md-3">
-        <div class="card shadow border-0 p-3 bg-primary text-white h-100">
-            <small>⚖ Avg Calories</small>
-            <h3>{{ kpi.avg_calories }}</h3>
-        </div>
-    </div>
-
-    <div class="col-md-3">
-        <div class="card shadow border-0 p-3 bg-info text-white h-100" >
-            <small>🎯 Personalized Goal</small>
-            <h3>{{ recommended_target }}</h3>
+    <div class="col-md-6">
+        <div class="card border-0 shadow rounded-4 p-4 h-100">
+            <small class="text-muted">🎯 Personalized Daily Goal based on your profile</small>
+            <h2 class="fw-bold text-success mt-2">{{ recommended_target }}</h2>
+            <!-- <small class="text-muted">Calories/day based on your profile</small> -->
         </div>
     </div>
 
 </div>
 
+
 <!-- KPI ROW 2 -->
-
-<div class="row g-3 mb-4">
+<div class="row g-4 mb-4">
 
     <div class="col-md-2">
-        <div class="card p-3 shadow text-center">
-            <small>🍽 Today Calories</small>
-            <h4>{{ today_kpi.calories }}</h4>
+        <div class="card border-0 shadow rounded-4 p-3 text-center h-100">
+            <small class="text-muted">🍽 Calories</small>
+            <h4 class="fw-bold">{{ today_kpi.calories }}</h4>
         </div>
     </div>
 
     <div class="col-md-2">
-        <div class="card p-3 shadow text-center">
-            <small>💧 Water</small>
-            <h4>{{ today_kpi.water }}</h4>
+        <div class="card border-0 shadow rounded-4 p-3 text-center h-100">
+            <small class="text-muted">💧 Water</small>
+            <h4 class="fw-bold">{{ today_kpi.water }}</h4>
         </div>
     </div>
 
     <div class="col-md-2">
-        <div class="card p-3 shadow text-center">
-            <small>👟 Steps</small>
-            <h4>{{ today_kpi.steps }}</h4>
+        <div class="card border-0 shadow rounded-4 p-3 text-center h-100">
+            <small class="text-muted">👟 Steps</small>
+            <h4 class="fw-bold">{{ today_kpi.steps }}</h4>
         </div>
     </div>
 
     <div class="col-md-2">
-        <div class="card p-3 shadow text-center">
-            <small>😴 Sleep</small>
-            <h4>{{ today_kpi.sleep }}</h4>
+        <div class="card border-0 shadow rounded-4 p-3 text-center h-100">
+            <small class="text-muted">😴 Sleep</small>
+            <h4 class="fw-bold">{{ today_kpi.sleep }}</h4>
         </div>
     </div>
 
     <div class="col-md-4">
-        <div class="card p-3 shadow text-center  text-white">
-            <small>📈 Wellness Status</small>
-            <h4>Healthy Track</h4>
+        <div class="card border-0 shadow rounded-4 p-3 text-center h-100">
+            <small class="text-muted">📈 Wellness Status</small>
+            <h4 class="fw-bold text-success mt-2">Healthy Track</h4>
         </div>
     </div>
 
 </div>
 
-<!-- Charts Row 1 -->
+
+<!-- CHARTS ROW 1 -->
 <div class="row g-4 mb-4">
 
     <div class="col-lg-6">
-        <div class="card p-3 shadow border-0">
-            <h5>Weekly Calories vs Goal</h5>
+        <div class="card border-0 shadow rounded-4 p-4 h-100">
+            <h5 class="fw-bold mb-3">Weekly Calories vs Goal</h5>
             <canvas id="weeklyChart"></canvas>
         </div>
     </div>
 
     <div class="col-lg-6">
-        <div class="card p-3 shadow border-0">
-            <h5>Meals Logged (Last 7 Days)</h5>
+        <div class="card border-0 shadow rounded-4 p-4 h-100">
+            <h5 class="fw-bold mb-3">Meals Logged (7 Days)</h5>
             <canvas id="loggedChart"></canvas>
         </div>
     </div>
 
 </div>
 
-<!-- Charts Row 2 -->
-<div class="row g-4">
+
+<!-- CHARTS ROW 2 -->
+<div class="row g-4 mb-4">
 
     <div class="col-lg-6">
-        <div class="card p-3 shadow border-0">
-            <h5>Top Foods</h5>
+        <div class="card border-0 shadow rounded-4 p-4 h-100">
+            <h5 class="fw-bold mb-3">Top Foods</h5>
             <canvas id="foodChart"></canvas>
         </div>
     </div>
 
     <div class="col-lg-6">
-        <div class="card p-3 shadow border-0">
-            <h5>Calories by Weekday</h5>
+        <div class="card border-0 shadow rounded-4 p-4 h-100">
+            <h5 class="fw-bold mb-3">Calories by Weekday</h5>
             <canvas id="weekdayChart"></canvas>
         </div>
     </div>
 
 </div>
 
-<!-- Charts Row 3 -->
-<div class="row g-4 mt-1">
 
-    <div class="col-lg-12">
-        <div class="card p-3 shadow border-0">
-            <h5>30 Day Trend</h5>
+<!-- CHARTS ROW 3 -->
+<div class="row g-4">
+
+    <div class="col-12">
+        <div class="card border-0 shadow rounded-4 p-4">
+            <h5 class="fw-bold mb-3">30 Day Trend</h5>
             <canvas id="monthChart"></canvas>
         </div>
     </div>
@@ -134,9 +150,58 @@
 </div>
 
 <script>
+let allCharts = [];
 
-/* Weekly Calories */
-new Chart(document.getElementById('weeklyChart'), {
+function isDarkMode(){
+    return document.body.classList.contains("dark-mode");
+}
+
+function textColor(){
+    return isDarkMode() ? "#ffffff" : "#111827";
+}
+
+function gridColor(){
+    return isDarkMode()
+        ? "rgba(255,255,255,0.12)"
+        : "rgba(0,0,0,0.08)";
+}
+
+/* COMMON OPTIONS */
+function chartOptions(){
+    return {
+        responsive:true,
+        maintainAspectRatio:true,
+        plugins:{
+            legend:{
+                labels:{
+                    color:textColor(),
+                    font:{size:13, weight:'bold'}
+                }
+            }
+        },
+        scales:{
+            x:{
+                ticks:{
+                    color:textColor(),
+                    font:{size:12, weight:'bold'}
+                },
+                grid:{color:gridColor()}
+            },
+            y:{
+                ticks:{
+                    color:textColor(),
+                    font:{size:12, weight:'bold'}
+                },
+                grid:{color:gridColor()}
+            }
+        }
+    };
+}
+
+/* CREATE CHARTS */
+function buildCharts(){
+
+allCharts.push(new Chart(document.getElementById('weeklyChart'), {
 type:'line',
 data:{
 labels: JSON.parse('{{ daily_labels|escapejs }}'),
@@ -144,67 +209,113 @@ datasets:[
 {
 label:'Consumed',
 data: JSON.parse('{{ daily_calories|escapejs }}'),
-borderWidth:3,
+borderColor:'#0d6efd',
+backgroundColor:'rgba(13,110,253,.12)',
+fill:true,
 tension:0.4
 },
 {
 label:'Goal',
 data: JSON.parse('{{ target_calories|escapejs }}'),
-borderDash:[5,5]
+borderColor:'#198754',
+borderDash:[6,6]
 }
 ]
-}
-});
+},
+options: chartOptions()
+}));
 
-/* Logged Meals */
-new Chart(document.getElementById('loggedChart'), {
+allCharts.push(new Chart(document.getElementById('loggedChart'), {
 type:'bar',
 data:{
 labels: JSON.parse('{{ logged_labels|escapejs }}'),
 datasets:[{
 label:'Meals',
-data: JSON.parse('{{ logged_data|escapejs }}')
+data: JSON.parse('{{ logged_data|escapejs }}'),
+backgroundColor:'#0d6efd'
 }]
-}
-});
+},
+options: chartOptions()
+}));
 
-/* Top Foods */
-new Chart(document.getElementById('foodChart'), {
+allCharts.push(new Chart(document.getElementById('foodChart'), {
 type:'bar',
 data:{
 labels: JSON.parse('{{ top_food_labels|escapejs }}'),
 datasets:[{
 label:'Calories',
-data: JSON.parse('{{ top_food_data|escapejs }}')
+data: JSON.parse('{{ top_food_data|escapejs }}'),
+backgroundColor:'#fd7e14'
 }]
-}
-});
+},
+options: chartOptions()
+}));
 
-/* Weekday */
-new Chart(document.getElementById('weekdayChart'), {
+allCharts.push(new Chart(document.getElementById('weekdayChart'), {
 type:'bar',
 data:{
 labels: JSON.parse('{{ weekday_labels|escapejs }}'),
 datasets:[{
 label:'Calories',
-data: JSON.parse('{{ weekday_data|escapejs }}')
+data: JSON.parse('{{ weekday_data|escapejs }}'),
+backgroundColor:'#20c997'
 }]
-}
-});
+},
+options: chartOptions()
+}));
 
-/* Monthly */
-new Chart(document.getElementById('monthChart'), {
+allCharts.push(new Chart(document.getElementById('monthChart'), {
 type:'line',
 data:{
 labels: JSON.parse('{{ month_labels|escapejs }}'),
 datasets:[{
 label:'Calories',
 data: JSON.parse('{{ month_data|escapejs }}'),
+borderColor:'#dc3545',
+backgroundColor:'rgba(220,53,69,.12)',
+fill:true,
 tension:0.4
 }]
+},
+options: chartOptions()
+}));
+
 }
+
+/* UPDATE COLORS AFTER LOAD / TOGGLE */
+function refreshChartTheme(){
+
+allCharts.forEach(chart => {
+
+chart.options.plugins.legend.labels.color = textColor();
+
+chart.options.scales.x.ticks.color = textColor();
+chart.options.scales.y.ticks.color = textColor();
+
+chart.options.scales.x.grid.color = gridColor();
+chart.options.scales.y.grid.color = gridColor();
+
+chart.update();
+
+});
+
+}
+
+/* PAGE LOAD */
+document.addEventListener("DOMContentLoaded", function(){
+
+buildCharts();
+
+setTimeout(function(){
+    refreshChartTheme();
+}, 200);
+
+});
+
+/* THEME TOGGLE SUPPORT */
+window.addEventListener("storage", function(){
+    refreshChartTheme();
 });
 
 </script>
-
 {% endblock %}

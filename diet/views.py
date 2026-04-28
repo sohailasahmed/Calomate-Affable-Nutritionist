@@ -160,7 +160,7 @@ def dashboard(request):
 
     # ----------------progress_percentage---------------
     if calories_needed > 0:
-        raw_percent = int((total_calories / calories_needed) * 100)
+        raw_percent = int((total_calories / target) * 100)
     else:
         raw_percent = 0
 
@@ -174,23 +174,43 @@ def dashboard(request):
     else:
         progress_color = "bg-danger"
 
+    today_kpi = {
+        "calories": total_calories,
+        "water": profile.water_glasses if profile and profile.water_glasses else 0,
+        "steps": profile.steps if profile and profile.steps else 0,
+        "sleep": profile.sleep_hours if profile and profile.sleep_hours else 0
+    }
+
     
+
     # ---------------- SEND TO TEMPLATE ----------------
     return render(request, 'diet/dashboard.html', {
         'meals': meals,
         'today': today,
         'total_calories': total_calories,
         'calories_needed': target,
-        'food_names': json.dumps(food_names),
-        'calories': json.dumps(calories),
-        'percentages': json.dumps(percentages),
-        'meal_types': json.dumps(meal_types),
-        'meal_calories': json.dumps(meal_calories),
+
+        'food_names': json.dumps(food_names or []),
+        'calories': json.dumps(calories or []),
+        'percentages': json.dumps(percentages or []),
+
+        'meal_types': json.dumps(meal_types or []),
+        'meal_calories': json.dumps(meal_calories or []),
+
         'suggestions': suggestions,
         'exercises': exercises,
         'feedback': feedback,
+
         'progress_percent': progress_percent,
         'raw_percent': raw_percent,
         'progress_color': progress_color,
-        "recommended_target": target,
+
+        'recommended_target': target,
+
+        # KPI VALUES
+        'water_glasses': today_kpi["water"],
+        'steps': today_kpi["steps"],
+        'sleep_hours': today_kpi["sleep"],
+
+        'today_kpi': today_kpi,
     })

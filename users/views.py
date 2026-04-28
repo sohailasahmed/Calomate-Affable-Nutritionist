@@ -12,52 +12,55 @@ from django.conf import settings
 from .models import UserProfile, WaterIntake, DailySteps
 from core.services import get_personal_target
 from datetime import date
+from django.utils import timezone
 
 API_KEY = settings.API_KEY
 
 @login_required
 def account(request):
     profile, created = UserProfile.objects.get_or_create(user=request.user)
-    today = date.today()
 
+    today = timezone.localdate()   # Uses Asia/Kolkata from settings.py
+
+    # Daily reset
     if profile.last_tracker_reset != today:
         profile.water_glasses = 0
         profile.steps = 0
         profile.sleep_hours = 0
         profile.last_tracker_reset = today
         profile.save()
-
     if request.method == "POST":
 
-        # Add water button
+        # WATER
         if "add_water" in request.POST:
             profile.water_glasses += 1
             profile.save()
             return redirect("account")
 
-        if "add_steps" in request.POST:
+        # STEPS
+        elif "add_steps" in request.POST:
             profile.steps += 1000
             profile.save()
             return redirect("account")
 
-        if "add_sleep" in request.POST:
+        # SLEEP
+        elif "add_sleep" in request.POST:
             profile.sleep_hours += 1
             profile.save()
             return redirect("account")
 
-        # Save profile form
-        form = UserProfileForm(request.POST, request.FILES, instance=profile)
-
-        if form.is_valid():
-            obj = form.save()
-            print("Saved:", obj.profile_pic)
-            return redirect("account")
+        # PROFILE FORM
         else:
-            print(form.errors)
+            form = UserProfileForm(request.POST, request.FILES, instance=profile)
 
+            if form.is_valid():
+                obj = form.save(commit=False)
+                obj.user = request.user
+                obj.save()
+                return redirect("account")
     else:
         form = UserProfileForm(instance=profile)
-    # -------- Calculations --------
+# -------- Calculations --------
     age = None
     bmi = None
     bmi_status = ""

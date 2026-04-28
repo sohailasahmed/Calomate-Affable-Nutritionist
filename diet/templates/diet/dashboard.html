@@ -1,142 +1,218 @@
 {% extends 'base.html' %}
-
 {% block content %}
 
-<div class="container">
+<div class="container py-4">
 
-<h2 class="mb-4 fw-bold">Welcome {{ request.user.username }} 👋</h2>
-<p class="text-muted">Your Daily Health Dashboard</p>
+<!-- HEADER -->
+<div class="card border-0 shadow-lg rounded-4 p-4 mb-4">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
 
-<!-- TOP CARDS -->
-<div class="row g-4">
+        <div>
+            <span class="badge bg-success px-3 py-2 mb-2">Daily Nutrition Center</span>
+            <h2 class="fw-bold mb-1">Welcome {{ request.user.username }} 👋</h2>
+            <p class="text-muted mb-0">Track calories, meals, progress and improve daily habits.</p>
+        </div>
+
+        <a href="/diet/add-meal/" class="btn btn-success px-4">
+            + Add Meal
+        </a>
+
+    </div>
+</div>
+
+
+<!-- TOP KPI -->
+<div class="row g-4 mb-4">
 
     <div class="col-md-4">
-        <div class="card shadow border-0 p-4 text-center">
-            <h6>Total Calories</h6>
-            <h1 class="text-primary">{{ total_calories }}</h1>
+        <div class="card border-0 shadow rounded-4 p-4 text-center h-100">
+            <small class="text-muted">Today's Calories</small>
+            <h1 class="fw-bold text-primary mt-2">{{ total_calories }}</h1>
         </div>
     </div>
 
     <div class="col-md-4">
-        <div class="card shadow border-0 p-4 text-center">
-            <h6>Todays Goal 🎯</h6>
-            <h1 class="text-success">{{ recommended_target }}</h1>
+        <div class="card border-0 shadow rounded-4 p-4 text-center h-100">
+            <small class="text-muted">Today's Goal 🎯</small>
+            <h1 class="fw-bold text-success mt-2">{{ recommended_target }}</h1>
         </div>
     </div>
-    
 
     <div class="col-md-4">
-        <div class="card shadow border-0 p-4 text-center">
-            <h6>Status</h6>
-            <p class="fw-bold mt-3">{{ feedback }}</p>
+        <div class="card border-0 shadow rounded-4 p-4 text-center h-100">
+            <small class="text-muted">Status</small>
+            <h4 class="fw-bold mt-1">{{ feedback }}</h4>
         </div>
     </div>
 
 </div>
 
+
 <!-- PROGRESS -->
-<div class="card shadow border-0 mt-4 p-4">
-    <div class="d-flex justify-content-between">
-        <h5>Daily Progress</h5>
+<div class="card border-0 shadow rounded-4 p-4 mb-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <h5 class="fw-bold mb-0">Daily Progress</h5>
         <strong>{{ raw_percent }}%</strong>
     </div>
 
-    <div class="progress mt-3" style="height: 28px; border-radius:20px;">
+    <div class="progress" style="height:28px; border-radius:20px;">
 
         <div class="progress-bar {{ progress_color }}"
-             role="progressbar"
-             style="--progress: {{ progress_percent }}%; width: var(--progress);
-                    transition: width 1.2s ease;
-                    border-radius:20px;">
+            role="progressbar"
+            aria-valuenow="{{ progress_percent|default:0 }}"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            data-width="{{ progress_percent|default:0 }}">
 
             {{ total_calories }} / {{ calories_needed }}
 
         </div>
 
     </div>
+
 </div>
 
-<!-- MEALS -->
-<div class="card shadow border-0 mt-4 p-4">
-    <h4>Today's Meals 🍽️</h4>
-    <table class="table table-hover mt-3">
-        <tr>
-            <th>Food</th>
-            <th>Qty</th>
-            <th>Calories</th>
-            <th>Remove</th>
-        </tr>
 
-        {% for meal in meals %}
-        <tr>
-            <td>{{ meal.food.name }}</td>
-            <td>{{ meal.quantity }}</td>
-            <td>{{ meal.total_calories }}</td>
-            <td>
-            <a href="/diet/delete-meal/{{ meal.id }}/"
-            class="btn btn-sm btn-danger">-</a>
-            </td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="3">No meals added today.</td>
-        </tr>
-        {% endfor %}
-    </table>
-    <a href="/diet/add-meal/" class="btn btn-success mb-3">
-    + Add Meal
-    </a>
+<!-- MEAL TABLE -->
+<div class="card border-0 shadow rounded-4 p-4 mb-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="fw-bold mb-0">Today's Meals 🍽️</h4>
+
+        <a href="/diet/add-meal/" class="btn btn-sm btn-success">
+            + Add Meal
+        </a>
+    </div>
+
+    <div class="table-responsive">
+
+        <table class="table align-middle">
+
+            <thead>
+                <tr>
+                    <th>Food</th>
+                    <th>Qty</th>
+                    <th>Calories</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+            {% for meal in meals %}
+                <tr>
+                    <td>{{ meal.food.name }}</td>
+                    <td>{{ meal.quantity }}</td>
+                    <td>{{ meal.total_calories }}</td>
+                    <td>
+                        <a href="/diet/delete-meal/{{ meal.id }}/"
+                           class="btn btn-sm btn-danger">
+                           Delete
+                        </a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center text-muted">
+                        No meals added today.
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
 </div>
 
-<!-- SUGGESTIONS + EXERCISES -->
-<div class="row g-4 mt-1">
 
-    <div class="col-md-6">
-        <div class="card shadow border-0 p-4 h-100">
-            <h4>Suggestions 🍎</h4>
+<!-- RECOMMENDATIONS -->
+<div class="row g-4 mb-4">
 
-            <ul class="mt-3">
+    <div class="col-lg-6">
+
+        <div class="card border-0 shadow rounded-4 p-4 h-100">
+            <h4 class="fw-bold mb-3">Suggestions 🍎</h4>
+
+            <ul class="mb-0">
                 {% for s in suggestions %}
                 <li class="mb-2">{{ s }}</li>
                 {% endfor %}
             </ul>
         </div>
+
     </div>
 
-    <div class="col-md-6">
-        <div class="card shadow border-0 p-4 h-100">
-            <h4>Recommended Exercises 🏃</h4>
+    <div class="col-lg-6">
 
-            <ul class="mt-3">
+        <div class="card border-0 shadow rounded-4 p-4 h-100">
+            <h4 class="fw-bold mb-3">Recommended Exercises 🏃</h4>
+
+            <ul class="mb-0">
                 {% for e in exercises %}
                 <li class="mb-2">{{ e }}</li>
                 {% endfor %}
             </ul>
         </div>
+
     </div>
 
 </div>
 
-<!-- CHARTS -->
-<div class="row g-4 mt-1">
 
-    <div class="col-md-6">
-        <div class="card shadow border-0 p-4 text-center">
-            <h4>Calories Distribution 🍩</h4>
+<!-- CHARTS -->
+<div class="row g-4">
+
+    <div class="col-lg-6">
+        <div class="card border-0 shadow rounded-4 p-4 text-center">
+            <h5 class="fw-bold mb-3">Calories Distribution 🍩</h5>
             <canvas id="myChart"></canvas>
         </div>
     </div>
 
     <div class="col-md-6">
+
+        <!-- KPI ROW -->
+        <div class="row g-2 mb-3">
+
+            <div class="col-4">
+                <div class="card p-2 text-center shadow border-0">
+                    <small>💧 Water</small>
+                    <h6 class="fw-bold">{{ water_glasses }}/8</h6>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="card p-2 text-center shadow border-0">
+                    <small>👣 Steps</small>
+                    <h6 class="fw-bold">{{ steps }}</h6>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="card p-2 text-center shadow border-0">
+                    <small>😴 Sleep</small>
+                    <h6 class="fw-bold">{{ sleep_hours }}</h6>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CHART -->
         <div class="card shadow border-0 p-4 text-center">
             <h4>Meal Type Calories 📊</h4>
             <canvas id="barChart"></canvas>
         </div>
+
     </div>
 
 </div>
 
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -146,37 +222,31 @@ const data = JSON.parse('{{ calories|escapejs }}');
 const percentages = JSON.parse('{{ percentages|escapejs }}');
 
 new Chart(document.getElementById('myChart'), {
-    type: 'doughnut',
-    data: {
-        labels: labels.map((l, i) => l + " (" + percentages[i].toFixed(1) + "%)"),
-        datasets: [{
-            data: data
-        }]
-    },
-    options: {
-        plugins: {
-            legend: { position: 'bottom' }
-        }
-    }
+type:'doughnut',
+data:{
+labels: labels.map((l,i)=> l + " (" + percentages[i].toFixed(1) + "%)"),
+datasets:[{data:data}]
+},
+options:{
+plugins:{legend:{position:'bottom'}}
+}
 });
 
 const mealLabels = JSON.parse('{{ meal_types|escapejs }}');
 const mealData = JSON.parse('{{ meal_calories|escapejs }}');
 
 new Chart(document.getElementById('barChart'), {
-    type: 'bar',
-    data: {
-        labels: mealLabels,
-        datasets: [{
-            label: 'Calories',
-            data: mealData
-        }]
-    },
-    options: {
-        plugins: {
-            legend: { display: false }
-        }
-    }
+type:'bar',
+data:{
+labels: mealLabels,
+datasets:[{
+label:'Calories',
+data: mealData
+}]
+},
+options:{
+plugins:{legend:{display:false}}
+}
 });
 </script>
 

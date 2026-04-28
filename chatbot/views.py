@@ -53,7 +53,7 @@ def chat(request):
             difference = calories_needed - total_calories
 
             # 🔥 STEP 2: LOCAL SMART LOGIC (faster + free)
-            if "eat" in user_input.lower():
+            if "eat" or "recommend" or "suggest" or "suggestion" in user_input.lower():
                 if difference > 300:
                     response_text = "You can have a full meal like rice, chicken, or roti with curry."
                 elif difference > 0:
@@ -61,7 +61,7 @@ def chat(request):
                 else:
                     response_text = "You have exceeded your calories. Try lighter food or walk."
 
-            elif "calorie" in user_input.lower():
+            elif "calorie" and "my" in user_input.lower():
                 response_text = f"You consumed {total_calories} kcal today. Target is {int(calories_needed)} kcal."
 
             else:

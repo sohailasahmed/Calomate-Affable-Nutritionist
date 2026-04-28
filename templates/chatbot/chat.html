@@ -2,20 +2,141 @@
 
 {% block content %}
 
-<div class="card shadow p-4">
-    <h4>🤖 Health Assistant</h4>
+<div class="container py-4">
 
-    <form method="POST">
-        {% csrf_token %}
-        <input type="text" name="message" class="form-control mb-3" placeholder="Ask something...">
-        <button class="btn btn-primary">Send</button>
-    </form>
+    <!-- HEADER -->
+    <div class="text-center mb-4">
+        <h2 class="fw-bold display-5">AI Health Assistant 🤖</h2>
+        <p class="fs-5">Ask nutrition, calories, meals, fitness or health questions instantly</p>
+    </div>
 
-    {% if response %}
-        <div class="alert alert-success mt-3">
-            <strong>Bot:</strong> {{ response }}
+    <div class="row justify-content-center">
+        <div class="col-lg-11">
+
+            <!-- MAIN CHAT CARD -->
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+
+                <!-- TOP BAR -->
+                <div class="p-3 text-white"
+                     style="background:linear-gradient(135deg,#2563eb,#1d4ed8);">
+
+                    <div class="d-flex align-items-center gap-3">
+                        <div style="
+                            width:48px;
+                            height:48px;
+                            border-radius:50%;
+                            background:rgba(255,255,255,.18);
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            font-size:22px;">
+                            🤖
+                        </div>
+
+                        <div>
+                            <h5 class="mb-0 text-white">Calomate AI Coach</h5>
+                            <small style="color:rgba(255,255,255,.85);">
+                                Online • Ready to help
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BODY -->
+                <div class="p-4">
+
+                    <!-- QUICK SUGGESTIONS -->
+                    <div class="mb-4">
+                        <small class="text-muted d-block mb-2">Try asking:</small>
+
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-light text-dark p-2">How many calories in biryani?</span>
+                            <span class="badge bg-light text-dark p-2">Best protein breakfast?</span>
+                            <span class="badge bg-light text-dark p-2">How to lose weight fast?</span>
+                            <span class="badge bg-light text-dark p-2">Healthy snacks?</span>
+                        </div>
+                    </div>
+
+                    <!-- FORM -->
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <label class="form-label fw-semibold">
+                            Ask your question
+                        </label>
+
+                        <textarea name="message"
+                                  rows="2"
+                                  class="form-control rounded-4 mb-3"
+                                  placeholder="Type your health question here..."
+                                  required></textarea>
+
+                        <button class="btn btn-primary w-100 rounded-4 py-2 fw-semibold">
+                            Ask AI Assistant
+                        </button>
+                    </form>
+
+                    <!-- RESPONSE -->
+                    {% if response %}
+                    <div class="mt-4">
+
+                        <div class="p-4 rounded-4 border"
+                             style="background:#f8fafc;">
+
+                            <div class="d-flex align-items-center mb-2 gap-2">
+                                <span style="font-size:22px;">🤖</span>
+                                <strong>AI Response</strong>
+                            </div>
+
+                            <p class="mb-0 fs-5 lh-lg fw-semibold">
+                                {{ response }}
+                            </p>
+
+                        </div>
+
+                    </div>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            <!-- EXTRA TIPS -->
+            <div class="card border-0 shadow mt-4 rounded-4 p-4">
+                <h6 class="fw-bold mb-3">Popular Topics 📌</h6>
+
+                <div class="row text-center g-3">
+
+                    <div class="col-md-3">
+                        <div class="p-3 rounded-4 bg-light">
+                            🍎<br><small>Nutrition</small>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="p-3 rounded-4 bg-light">
+                            🏃<br><small>Fitness</small>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="p-3 rounded-4 bg-light">
+                            ⚖️<br><small>Weight Loss</small>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="p-3 rounded-4 bg-light">
+                            💧<br><small>Hydration</small>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
-    {% endif %}
+    </div>
+
 </div>
 
 {% endblock %}
