@@ -4,3 +4,5 @@ profiles
 __pycache__/
 *.pyc
 media/
+venv/
+staticfiles/

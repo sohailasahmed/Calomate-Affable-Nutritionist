@@ -4,47 +4,39 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-# ---------------------------------------------------
-# BASE DIRECTORY
-# ---------------------------------------------------
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# ---------------------------------------------------
-# LOAD ENV FILE
-# ---------------------------------------------------
 load_dotenv(BASE_DIR / ".env")
 
 # ---------------------------------------------------
-# SECRET / API KEYS
+# SECRET KEY
 # ---------------------------------------------------
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 API_KEY = os.getenv("API_KEY")
 
 # ---------------------------------------------------
-# DEBUG MODE
+# DEBUG
 # ---------------------------------------------------
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
 # ---------------------------------------------------
 # ALLOWED HOSTS
 # ---------------------------------------------------
-ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "localhost",
-]
+ALLOWED_HOSTS = os.getenv(
+    "ALLOWED_HOSTS",
+    "127.0.0.1,localhost"
+).split(",")
 
 # ---------------------------------------------------
 # INSTALLED APPS
 # ---------------------------------------------------
 INSTALLED_APPS = [
-    # Custom Apps
     'users',
     'diet',
     'analytics',
     'chatbot',
 
-    # Django Apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -58,6 +50,10 @@ INSTALLED_APPS = [
 # ---------------------------------------------------
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+
+    # whitenoise for static files deployment
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -67,7 +63,7 @@ MIDDLEWARE = [
 ]
 
 # ---------------------------------------------------
-# ROOT URL CONFIG
+# ROOT
 # ---------------------------------------------------
 ROOT_URLCONF = 'core.urls'
 
@@ -97,67 +93,90 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # ---------------------------------------------------
 # DATABASE
 # ---------------------------------------------------
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if os.getenv("DATABASE_URL"):
+    import dj_database_url
+
+    DATABASES = {
+        'default': dj_database_url.parse(
+            os.getenv("DATABASE_URL"),
+            conn_max_age=600,
+            ssl_require=True
+        )
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # ---------------------------------------------------
-# PASSWORD VALIDATION
+# PASSWORDS
 # ---------------------------------------------------
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {'min_length': 8}
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'
     },
 ]
 
 # ---------------------------------------------------
-# INTERNATIONALIZATION
+# LANGUAGE / TIME
 # ---------------------------------------------------
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
-
 USE_TZ = True
 
 # ---------------------------------------------------
-# STATIC FILES
+# STATIC
 # ---------------------------------------------------
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
-
+STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 # ---------------------------------------------------
-# MEDIA FILES
+# MEDIA
 # ---------------------------------------------------
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # ---------------------------------------------------
-# LOGIN / LOGOUT
+# LOGIN
 # ---------------------------------------------------
 LOGIN_URL = '/register/'
 LOGIN_REDIRECT_URL = '/home/'
 LOGOUT_REDIRECT_URL = '/'
 
 # ---------------------------------------------------
-# DEFAULT PRIMARY KEY
+# SECURITY SETTINGS
+# ---------------------------------------------------
+CSRF_COOKIE_SECURE = not DEBUG
+SESSION_COOKIE_SECURE = not DEBUG
+SECURE_SSL_REDIRECT = not DEBUG
+
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+X_FRAME_OPTIONS = 'DENY'
+
+SECURE_REFERRER_POLICY = "same-origin"
+
+# ---------------------------------------------------
+# DEFAULT PK
 # ---------------------------------------------------
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
