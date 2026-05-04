@@ -36,3 +36,6 @@ htmlcov/
 
 # Migrations cache
 **/__pycache__/
+
+#git
+.git/

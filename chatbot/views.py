@@ -5,6 +5,8 @@ from users.models import UserProfile
 from datetime import date
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
+from core.services import get_personal_target
+
 
 API_KEY = settings.API_KEY
 @login_required
@@ -20,40 +22,36 @@ def chat(request):
             meals = Meal.objects.filter(user=request.user, date=today)
             total_calories = sum(m.total_calories() for m in meals)
 
-            try:
-                profile = UserProfile.objects.get(user=request.user)
+            # try:
+            #     profile = UserProfile.objects.filter(user=request.user).first()
 
-                # height convert
-                total_inches = (profile.feet * 12) + profile.inches
-                height_cm = total_inches * 2.54
 
-                # calculate age
-                today = date.today()
-                age = 25
+            #     if profile and profile.dob and profile.gender:
+            #         age = today.year - profile.dob.year - (
+            #             (today.month, today.day) < (profile.dob.month, profile.dob.day)
+            #         )
 
-                if profile.dob:
-                    age = today.year - profile.dob.year - (
-                        (today.month, today.day) < (profile.dob.month, profile.dob.day)
-                    )
+            #         height_cm = ((profile.feet * 12) + profile.inches) * 2.54
+            #         weight = profile.weight_kg
 
-                # BMR
-                if profile.gender.lower() == "female":
-                    calories_needed = 10 * profile.weight_kg + 6.25 * height_cm - 5 * age - 161
-                else:
-                    calories_needed = 10 * profile.weight_kg + 6.25 * height_cm - 5 * age + 5
+            #         if profile.gender.lower() == "male":
+            #             calories_needed = int(10 * weight + 6.25 * height_cm - 5 * age + 5)
+            #         else:
+            #             calories_needed = int(10 * weight + 6.25 * height_cm - 5 * age - 161)
 
-                if profile.goal == 'loss':
-                    calories_needed -= 300
-                elif profile.goal == 'gain':
-                    calories_needed += 300
+            #         # Goal adjustment
+            #         if profile.goal == "loss":
+            #                 calories_needed -= 300
+            #         elif profile.goal == "gain":
+            #                 calories_needed += 300
 
-            except:
-                calories_needed = 2000
-
-            difference = calories_needed - total_calories
-
+            # except:
+            #     calories_needed = 2000
+            
+            target = get_personal_target(request.user)
+            difference = target - total_calories
             # 🔥 STEP 2: LOCAL SMART LOGIC (faster + free)
-            if "eat" or "recommend" or "suggest" or "suggestion" in user_input.lower():
+            if any(word in user_input.lower() for word in ["eat", "recommend", "suggest", "suggestion"]):
                 if difference > 300:
                     response_text = "You can have a full meal like rice, chicken, or roti with curry."
                 elif difference > 0:
@@ -61,8 +59,11 @@ def chat(request):
                 else:
                     response_text = "You have exceeded your calories. Try lighter food or walk."
 
-            elif "calorie" and "my" in user_input.lower():
-                response_text = f"You consumed {total_calories} kcal today. Target is {int(calories_needed)} kcal."
+            elif "protein" in user_input:
+                response_text = "Good protein sources: eggs, chicken, paneer, dal."
+
+            elif "calories" in user_input and "my" in user_input:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                response_text = f"You consumed {total_calories} kcal today. Target is {int(target)} kcal."
 
             else:
                 # 🔥 STEP 3: CALL API

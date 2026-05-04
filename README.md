@@ -1,77 +1,240 @@
-# Calomate---Your-Affable-Nutritionist
+Here’s a professional, recruiter-level README.md for your project Calomate.
+You can copy-paste this directly into your GitHub repo.
 
-✅ Current Project Status :
-Project Name / Theme
+---
 
-Health / Calorie Tracker (Calomate)
+# 🥗 Calomate – AI-Powered Nutrition & Fitness Tracker
 
-Installed Django Apps
-users → Authentication + profile + health metrics
-diet → Food database + meals + calories dashboard
-analytics → Present but mostly empty
-chatbot → Present with chat template
-core → Main settings/URLs
-✅ Working Features Found
-1. User Authentication
-Register
-Login
-Logout
-2. User Profile System
+Calomate is a full-stack web application built with Django that helps users track their daily calorie intake, analyze eating habits, and receive intelligent diet suggestions. It combines meal logging, analytics, and an AI chatbot into a single platform to promote healthier lifestyle decisions.
 
-Includes:
+---
 
-Profile photo upload
-City
-Height (feet/inches)
-Weight
-DOB
-Gender
-Goal (loss/gain etc.)
-Target weight
-Medical conditions
-3. Health Metrics
-BMI calculation
-BMI status
-Age calculation
-Daily calories estimate (BMR style)
-4. Water / Steps / Sleep Tracking
+## 🚀 Features
 
-Buttons increment values
+* 🔐 User Authentication (Register/Login/Logout)
+* 🍽️ Meal Logging System (Add, Delete, Track Meals)
+* 📊 Interactive Dashboard with real-time calorie tracking
+* 📈 Analytics using charts (daily & weekly trends)
+* 🤖 AI Chatbot for diet suggestions and Q&A
+* 🌙 Dark Mode UI for better user experience
+* 📱 Fully Responsive Design (Bootstrap)
+* 🔒 Secure environment-based configuration
+* ☁️ Deployment-ready (PostgreSQL + WhiteNoise + Gunicorn)
 
-5. Food & Meals System
+---
 
-Models found:
+## 🛠️ Tech Stack
 
-Food
-Name
-calories_per_100g
-Meal
-User
-Food
-Quantity
-Meal type (Breakfast/Lunch/Dinner/Snack)
-Date
-6. Add Meal Page
-Dynamic food search
-Quantity system
-Custom food add
-7. Dashboard
+### Backend
 
-Very good logic already:
+* Python
+* Django
 
-Total calories today
-Required calories
-Progress %
-Progress bar colors
-Food chart data
-Meal type chart data
-Suggestions
-Exercise tips
-Daily feedback
-8. PDF Report
+### Frontend
 
-Health report export exists
+* HTML
+* CSS
+* Bootstrap
+* JavaScript
 
-9. AI Recommendations
+### Database
 
-Using external API in account page
+* SQLite (Development)
+* PostgreSQL (Production)
+
+### Tools & Libraries
+
+* Chart.js
+* Gunicorn
+* WhiteNoise
+* python-dotenv
+
+### Deployment
+
+* Render
+
+---
+
+## 📂 Project Structure
+
+```
+project_root/
+│
+├── core/                # Project settings & URLs
+├── users/               # Authentication & profiles
+├── diet/                # Meal management
+├── analytics/           # Charts & insights
+├── chatbot/             # AI assistant
+│
+├── templates/           # HTML templates
+├── static/              # CSS, JS, images
+├── media/               # User uploads
+│
+├── manage.py
+├── requirements.txt
+├── .env
+└── README.md
+```
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/your-username/calomate.git
+cd calomate
+```
+
+### 2. Create Virtual Environment
+
+```bash
+python -m venv venv
+venv\Scripts\activate   # Windows
+```
+
+### 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Setup Environment Variables
+
+Create a `.env` file:
+
+```env
+SECRET_KEY=your_secret_key
+DEBUG=True
+ALLOWED_HOSTS=127.0.0.1,localhost
+DATABASE_URL=sqlite:///db.sqlite3
+API_KEY=your_api_key (Your AI chatbot API Key)
+```
+
+---
+
+### 5. Run Migrations
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+---
+
+### 6. Run Server
+
+```bash
+python manage.py runserver
+```
+
+👉 Open: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+
+---
+
+Build Command
+
+```bash
+pip install -r requirements.txt
+```
+
+Start Command
+
+```bash
+gunicorn core.wsgi:application
+```
+
+---
+
+## 🔐 Environment Variables
+
+| Variable      | Description           |
+| ------------- | --------------------- |
+| SECRET_KEY    | Django secret key     |
+| DEBUG         | Debug mode            |
+| ALLOWED_HOSTS | Allowed domains       |
+| DATABASE_URL  | PostgreSQL connection |
+| API_KEY       | AI chatbot key        |
+
+---
+
+## 📊 Key Functionalities
+
+### ✔ Meal Tracking
+
+Users can log meals with calorie values and maintain daily records.
+
+### ✔ Dashboard
+
+Displays:
+
+* Total calories
+* Remaining calories
+* Daily summary
+
+### ✔ Analytics
+
+* Visual charts for trends
+* Helps understand eating habits
+
+### ✔ AI Chatbot
+
+* Answers health-related queries
+* Provides diet suggestions
+
+---
+
+## 🧪 Testing
+
+* Unit Testing (modules)
+* Integration Testing (module interaction)
+* System Testing (full app)
+* UI Testing (responsiveness)
+
+---
+
+## 📈 Future Enhancements
+
+* 📱 Mobile App (Android/iOS)
+* ⌚ Wearable device integration
+* 🧠 Advanced AI recommendations
+* 🔔 Notifications & reminders
+* 🌍 Multi-language support
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+1. Fork the repo
+2. Create a new branch
+3. Commit changes
+4. Push and create PR
+
+---
+
+## 📜 License
+
+This project is for educational purposes.
+
+---
+
+## 👨‍💻 Author
+
+Sohail Ahmed
+CSE (Software Engineering) Graduate
+Let's Connect https://www.linkedin.com/in/sohailasahmed/
+
+---
+
+## ⭐ If you like this project
+
+Give it a ⭐ on GitHub and share!
+
+---
+
+<!-- * I'll Add live link (after deployment) -->
+
+* https://github.com/sohailasahmed/Calomate-Affable-Nutritionist
