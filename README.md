@@ -1,7 +1,3 @@
-Here’s a professional, recruiter-level README.md for your project Calomate.
-You can copy-paste this directly into your GitHub repo.
-
----
 
 # 🥗 Calomate – AI-Powered Nutrition & Fitness Tracker
 
