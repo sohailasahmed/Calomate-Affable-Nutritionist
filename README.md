@@ -79,7 +79,7 @@ project_root/
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/your-username/calomate.git
+git clone https://github.com/sohailasahmed/Calomate-Affable-Nutritionist.git
 cd calomate
 ```
 
