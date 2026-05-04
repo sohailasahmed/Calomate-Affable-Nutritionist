@@ -63,7 +63,7 @@ project_root/
 ├── core/                # Project settings & URLs
 ├── users/               # Authentication & profiles
 ├── diet/                # Meal management
-├── analytics/           # Charts & insights
+├── home/                # Charts & insights
 ├── chatbot/             # AI assistant
 │
 ├── templates/           # HTML templates

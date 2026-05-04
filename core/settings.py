@@ -21,7 +21,6 @@ ALLOWED_HOSTS = os.getenv(
 INSTALLED_APPS = [
     'users',
     'diet',
-    'analytics',
     'chatbot',
 
     'django.contrib.admin',
