@@ -11,7 +11,7 @@
 
         <div>
             <span class="badge bg-primary px-3 py-2 mb-2">Advanced Analytics</span>
-            <h2 class="fw-bold mb-1">Analytics Dashboard 📊</h2>
+            <h2 class="fw-bold mb-1">Your Overall Analytics 📊</h2>
             <p class="text-muted mb-0">
                 Monitor nutrition consistency, trends and wellness progress.
             </p>
@@ -57,35 +57,35 @@
 <!-- KPI ROW 2 -->
 <div class="row g-4 mb-4">
 
-    <div class="col-md-2">
+    <div class="col-6 col-md-2">
         <div class="card border-0 shadow rounded-4 p-3 text-center h-100">
             <small class="text-muted">🍽 Calories</small>
             <h4 class="fw-bold">{{ today_kpi.calories }}</h4>
         </div>
     </div>
 
-    <div class="col-md-2">
+    <div class="col-6 col-md-2">
         <div class="card border-0 shadow rounded-4 p-3 text-center h-100">
             <small class="text-muted">💧 Water</small>
             <h4 class="fw-bold">{{ today_kpi.water }}</h4>
         </div>
     </div>
 
-    <div class="col-md-2">
+    <div class="col-6 col-md-2">
         <div class="card border-0 shadow rounded-4 p-3 text-center h-100">
             <small class="text-muted">👟 Steps</small>
             <h4 class="fw-bold">{{ today_kpi.steps }}</h4>
         </div>
     </div>
 
-    <div class="col-md-2">
+    <div class="col-6 col-md-2">
         <div class="card border-0 shadow rounded-4 p-3 text-center h-100">
             <small class="text-muted">😴 Sleep</small>
             <h4 class="fw-bold">{{ today_kpi.sleep }}</h4>
         </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-12 col-md-4">
         <div class="card border-0 shadow rounded-4 p-3 text-center h-100">
             <small class="text-muted">📈 Wellness Status</small>
             <h4 class="fw-bold text-success mt-2">Healthy Track</h4>
@@ -101,14 +101,18 @@
     <div class="col-lg-6">
         <div class="card border-0 shadow rounded-4 p-4 h-100">
             <h5 class="fw-bold mb-3">Weekly Calories vs Goal</h5>
-            <canvas id="weeklyChart"></canvas>
+            <div class="chart-container">
+                <canvas id="weeklyChart"></canvas>
+            </div>
         </div>
     </div>
 
     <div class="col-lg-6">
         <div class="card border-0 shadow rounded-4 p-4 h-100">
             <h5 class="fw-bold mb-3">Meals Logged (7 Days)</h5>
-            <canvas id="loggedChart"></canvas>
+            <div class="chart-container">
+                <canvas id="loggedChart"></canvas>
+            </div>
         </div>
     </div>
 
@@ -121,14 +125,18 @@
     <div class="col-lg-6">
         <div class="card border-0 shadow rounded-4 p-4 h-100">
             <h5 class="fw-bold mb-3">Top Foods</h5>
-            <canvas id="foodChart"></canvas>
+            <div class="chart-container">
+                <canvas id="foodChart"></canvas>
+            </div>
         </div>
     </div>
 
     <div class="col-lg-6">
         <div class="card border-0 shadow rounded-4 p-4 h-100">
             <h5 class="fw-bold mb-3">Calories by Weekday</h5>
-            <canvas id="weekdayChart"></canvas>
+            <div class="chart-container">
+                <canvas id="weekdayChart"></canvas>
+            </div>
         </div>
     </div>
 
@@ -141,7 +149,9 @@
     <div class="col-12">
         <div class="card border-0 shadow rounded-4 p-4">
             <h5 class="fw-bold mb-3">30 Day Trend</h5>
-            <canvas id="monthChart"></canvas>
+            <div class="chart-container">
+                <canvas id="monthChart"></canvas>
+            </div>
         </div>
     </div>
 
@@ -170,7 +180,7 @@ function gridColor(){
 function chartOptions(){
     return {
         responsive:true,
-        maintainAspectRatio:true,
+        maintainAspectRatio:false,
         plugins:{
             legend:{
                 labels:{

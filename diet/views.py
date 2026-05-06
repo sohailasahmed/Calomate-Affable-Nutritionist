@@ -3,7 +3,7 @@ from .models import Meal, Food
 from .forms import MealForm
 from users.models import UserProfile
 import json
-from datetime import date
+from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from collections import defaultdict
 from django.views.decorators.http import require_POST
@@ -60,9 +60,13 @@ def add_custom_food(request):
 
 @login_required
 def dashboard(request):
-    today = date.today()
-    meals = Meal.objects.filter(user=request.user, date=today)
 
+    today = timezone.localdate()
+    # now = timezone.localtime()
+    
+    meals = Meal.objects.filter(user=request.user, date=today)
+    print("TODAY:", today)
+    print("MEALS:", Meal.objects.filter(user=request.user))
     # ---------------- USER PROFILE ----------------
     profile = UserProfile.objects.filter(user=request.user).first()
 

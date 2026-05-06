@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="container py-5">
+<div class="container py-4 py-md-5">
 
-<div class="row justify-content-center align-items-center">
+<div class="row justify-content-center align-items-center g-4">
 
     <!-- LEFT CONTENT -->
-    <div class="col-lg-6 mb-4">
+    <div class="col-12 col-lg-6">
 
         <div class="pe-lg-5">
 
@@ -14,48 +14,49 @@
                 Start Free Today
             </span>
 
-            <h1 class="fw-bold display-5 mb-3">
+            <h1 class="fw-bold mb-3" style="font-size:clamp(28px,5vw,44px);">
                 Join <span class="text-success">Calomate</span>
             </h1>
 
-            <p class="lead text-muted mb-4">
+            <p class="text-muted mb-4">
                 Create your personal wellness account and start tracking calories, meals, hydration, sleep, steps and long-term health progress.
             </p>
 
+            <!-- FEATURES -->
             <div class="row g-3">
 
-                <div class="col-md-6">
-                    <div class="card border-0 shadow p-3 h-100">
+                <div class="col-12 col-sm-6">
+                    <div class="card border-0 shadow p-3 h-100 text-center text-sm-start">
                         <h6 class="fw-bold">🍽 Food Logging</h6>
                         <small class="text-muted">
-                            Add meals quickly and monitor calorie intake daily.
+                            Add meals quickly and monitor calories.
                         </small>
                     </div>
                 </div>
 
-                <div class="col-md-6">
-                    <div class="card border-0 shadow p-3 h-100">
+                <div class="col-12 col-sm-6">
+                    <div class="card border-0 shadow p-3 h-100 text-center text-sm-start">
                         <h6 class="fw-bold">📊 Reports</h6>
                         <small class="text-muted">
-                            Weekly charts and smart health summaries.
+                            Weekly charts and summaries.
                         </small>
                     </div>
                 </div>
 
-                <div class="col-md-6">
-                    <div class="card border-0 shadow p-3 h-100">
-                        <h6 class="fw-bold">🎯 Personalized Goals</h6>
+                <div class="col-12 col-sm-6">
+                    <div class="card border-0 shadow p-3 h-100 text-center text-sm-start">
+                        <h6 class="fw-bold">🎯 Goals</h6>
                         <small class="text-muted">
-                            Targets based on your profile and objectives.
+                            Personalized health targets.
                         </small>
                     </div>
                 </div>
 
-                <div class="col-md-6">
-                    <div class="card border-0 shadow p-3 h-100">
+                <div class="col-12 col-sm-6">
+                    <div class="card border-0 shadow p-3 h-100 text-center text-sm-start">
                         <h6 class="fw-bold">🤖 AI Assistant</h6>
                         <small class="text-muted">
-                            Get helpful health and nutrition suggestions.
+                            Smart nutrition guidance.
                         </small>
                     </div>
                 </div>
@@ -68,14 +69,14 @@
 
 
     <!-- REGISTER CARD -->
-    <div class="col-lg-5">
+    <div class="col-12 col-lg-5">
 
-        <div class="card border-0 shadow-lg rounded-4 p-5">
+        <div class="card border-0 shadow-lg rounded-4 p-4 p-md-5">
 
             <div class="text-center mb-4">
                 <h2 class="fw-bold">Create Account</h2>
                 <p class="text-muted mb-0">
-                    Begin your health journey now
+                    Begin your health journey
                 </p>
             </div>
 
@@ -87,12 +88,12 @@
                     {{ form.username }}
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3 position-relative">
                     {{ form.password1.label_tag }}
                     {{ form.password1 }}
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3 position-relative">
                     {{ form.password2.label_tag }}
                     {{ form.password2 }}
                 </div>

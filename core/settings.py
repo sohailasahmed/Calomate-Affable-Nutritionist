@@ -2,10 +2,18 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 import dj_database_url
+import cloudinary
+
+cloudinary.config(
+    cloud_name = os.environ.get("CLOUDINARY_CLOUD_NAME"),
+    api_key = os.environ.get("CLOUDINARY_API_KEY"),
+    api_secret = os.environ.get("CLOUDINARY_API_SECRET"),
+)
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv(BASE_DIR / ".env")
+load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 # SECURITY
 API_KEY = os.getenv("API_KEY", "")
@@ -29,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 # MIDDLEWARE
@@ -90,13 +101,14 @@ USE_TZ = True
 # STATIC FILES
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-# MEDIA FILES
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+# MEDIA FILES ---> cloud
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # LOGIN
 LOGIN_URL = '/register/'
@@ -104,10 +116,6 @@ LOGIN_REDIRECT_URL = '/home/'
 LOGOUT_REDIRECT_URL = '/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-CSRF_TRUSTED_ORIGINS = [
-    "https://*.onrender.com"
-]
 
 # SECURITY FOR PRODUCTION
 if not DEBUG:

@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from django.utils import timezone
+
 class Food(models.Model):
     name = models.CharField(max_length=100)
     calories_per_100g = models.FloatField(default=100)
@@ -28,7 +30,8 @@ class Meal(models.Model):
         default='breakfast'
     )
 
-    date = models.DateField(auto_now_add=True)
+    # date = models.DateField(auto_now_add=True)
+    date = models.DateField(default=timezone.localdate)
 
     def total_calories(self):
         return round(

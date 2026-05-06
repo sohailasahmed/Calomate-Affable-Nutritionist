@@ -1,20 +1,19 @@
 {% extends 'base.html' %}
-
 {% block content %}
 
-<div class="container py-4">
+<div class="container py-3 py-md-4">
 
     <!-- HEADER -->
     <div class="text-center mb-4">
-        <h2 class="fw-bold display-5">AI Health Assistant 🤖</h2>
-        <p class="fs-5">Ask nutrition, calories, meals, fitness or health questions instantly</p>
+        <h2 class="fw-bold">AI Health Assistant 🤖</h2>
+        <p>Ask nutrition, calories, meals, fitness or health questions instantly</p>
     </div>
 
     <div class="row justify-content-center">
-        <div class="col-lg-11">
+        <div class="col-12 col-lg-10">
 
             <!-- MAIN CHAT CARD -->
-            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+            <div class="card overflow-hidden">
 
                 <!-- TOP BAR -->
                 <div class="p-3 text-white"
@@ -22,19 +21,19 @@
 
                     <div class="d-flex align-items-center gap-3">
                         <div style="
-                            width:48px;
-                            height:48px;
+                            width:44px;
+                            height:44px;
                             border-radius:50%;
                             background:rgba(255,255,255,.18);
                             display:flex;
                             align-items:center;
                             justify-content:center;
-                            font-size:22px;">
+                            font-size:20px;">
                             🤖
                         </div>
 
                         <div>
-                            <h5 class="mb-0 text-white">Calomate AI Coach</h5>
+                            <h6 class="mb-0 text-white">Calomate AI Coach</h6>
                             <small style="color:rgba(255,255,255,.85);">
                                 Online • Ready to help
                             </small>
@@ -43,17 +42,17 @@
                 </div>
 
                 <!-- BODY -->
-                <div class="p-4">
+                <div class="p-3 p-md-4">
 
                     <!-- QUICK SUGGESTIONS -->
                     <div class="mb-4">
-                        <small class="text-muted d-block mb-2">Try asking:</small>
+                        <small class="d-block mb-2">Try asking:</small>
 
-                        <div class="d-flex flex-wrap gap-2">
-                            <span class="badge bg-light text-primary p-2">How many calories in biryani?</span>
-                            <span class="badge bg-light text-primary p-2">Best protein breakfast?</span>
-                            <span class="badge bg-light text-primary p-2">How to lose weight fast?</span>
-                            <span class="badge bg-light text-primary p-2">Healthy snacks?</span>
+                        <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start">
+                            <span class="badge bg-light text-primary">Calories in biryani?</span>
+                            <span class="badge bg-light text-primary">Protein breakfast?</span>
+                            <span class="badge bg-light text-primary">Weight loss tips?</span>
+                            <span class="badge bg-light text-primary">Healthy snacks?</span>
                         </div>
                     </div>
 
@@ -66,12 +65,12 @@
                         </label>
 
                         <textarea name="message"
-                                  rows="2"
-                                  class="form-control rounded-4 mb-3"
-                                  placeholder="Type your health question here..."
+                                  rows="3"
+                                  class="form-control mb-3"
+                                  placeholder="Type your health question..."
                                   required></textarea>
 
-                        <button class="btn btn-primary w-100 rounded-4 py-2 fw-semibold">
+                        <button class="btn btn-primary w-100">
                             Ask AI Assistant
                         </button>
                     </form>
@@ -80,15 +79,14 @@
                     {% if response %}
                     <div class="mt-4">
 
-                        <div class="p-4 rounded-4 border"
-                             style="background-color: #4A708B;">
+                        <div class="card p-3 p-md-4">
 
                             <div class="d-flex align-items-center mb-2 gap-2">
-                                <span style="font-size:22px;">🤖</span>
+                                <span style="font-size:20px;">🤖</span>
                                 <strong>AI Response</strong>
                             </div>
 
-                            <p class="mb-0 fs-5 lh-lg fw-semibold">
+                            <p class="mb-0 lh-lg">
                                 {{ response }}
                             </p>
 
@@ -102,32 +100,32 @@
             </div>
 
             <!-- EXTRA TIPS -->
-            <div class="card border-0 shadow mt-4 rounded-4 p-4">
+            <div class="card mt-4 p-3 p-md-4">
                 <h6 class="fw-bold mb-3">Popular Topics 📌</h6>
 
-                <div class="row text-center g-3">
+                <div class="row g-2 g-md-3 text-center">
 
-                    <div class="col-md-3">
-                        <div class="p-3 rounded-4 bg-light">
-                            🍎<br><span class="text-dark">Nutrition</span>
+                    <div class="col-6 col-md-3 ">
+                        <div class="p-3 rounded-4 chattopics-bg">
+                            🍎<br><small>Nutrition</small>
                         </div>
                     </div>
 
-                    <div class="col-md-3">
-                        <div class="p-3 rounded-4 bg-light">
-                            🏃<br><span class="text-dark">Fitness</span>
+                    <div class="col-6 col-md-3">
+                        <div class="p-3 rounded-4 chattopics-bg">
+                            🏃<br><small>Fitness</small>
                         </div>
                     </div>
 
-                    <div class="col-md-3">
-                        <div class="p-3 rounded-4 bg-light">
-                            ⚖️<br><span class="text-dark">Weight Loss</span>
+                    <div class="col-6 col-md-3">
+                        <div class="p-3 rounded-4 chattopics-bg">
+                            ⚖️<br><small>Weight Loss</small>
                         </div>
                     </div>
 
-                    <div class="col-md-3">
-                        <div class="p-3 rounded-4 bg-light">
-                            💧<br><span class="text-dark">Hydration</span>
+                    <div class="col-6 col-md-3">
+                        <div class="p-3 rounded-4 chattopics-bg">
+                            💧<br><small>Hydration</small>
                         </div>
                     </div>
 

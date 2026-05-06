@@ -1,44 +1,44 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="container mt-5">
+<div class="container py-3 py-md-5">
 
-<div class="card shadow-lg border-0 rounded-4 p-4">
+<div class="card p-3 p-md-4">
 
-<h1 class="fw-bold mb-4 text-center">
+<h2 class="fw-bold mb-4 text-center">
 Add Meal 🍽️
-</h1>
+</h2>
 
 <form method="POST" id="mealForm">
 {% csrf_token %}
 
 <!-- SEARCH + BUTTON -->
-<div class="row g-3 align-items-end mb-3">
+<div class="row g-3 align-items-end mb-3 col-md-8 position-relative">
 
-<div class="col-md-8">
+<div class="col-12 col-md-8">
 <label class="form-label fw-semibold">Search Food</label>
 
 <input type="text"
 id="foodSearch"
-class="form-control form-control-lg rounded-3"
+class="form-control form-control-lg"
 placeholder="Type food name..."
 autocomplete="off">
 
 <input type="hidden" name="food" id="foodId">
 
 <div id="foodList"
-class="list-group shadow position-absolute w-50"
-style="z-index:999; max-height:280px; overflow-y:auto; display:none;">
+class="list-group shadow position-absolute w-100"
+style="left:0;z-index:999; max-height:260px; overflow-y:auto; display:none;">
 </div>
 
 </div>
 
-<div class="col-md-4">
-<label class="form-label text-white">.</label>
+<div class="col-md-4 d-flex align-items-end">
+<!-- <label class="form-label d-none d-md-block">.</label> -->
 
-<button type="button"
-class="btn btn-outline-primary w-100 rounded-3"
-onclick="showCustomFood()">
+<button type="button"  
+class="btn btn-outline-primary w-100"
+onclick="showCustomFood()" style="white-space: normal;">
 + Add New Food
 </button>
 </div>
@@ -47,28 +47,28 @@ onclick="showCustomFood()">
 
 <!-- CUSTOM FOOD -->
 <div id="customFoodBox"
-class="card border-0  p-3 mb-4"
+class="card p-3 mb-4"
 style="display:none;">
 
 <h5 class="mb-3">Add Custom Food</h5>
 
 <div class="row g-3">
 
-<div class="col-md-6">
+<div class="col-12 col-md-6">
 <input type="text"
 id="newFoodName"
 class="form-control"
 placeholder="Food Name">
 </div>
 
-<div class="col-md-4">
+<div class="col-12 col-md-4">
 <input type="number"
 id="newFoodCal"
 class="form-control"
-placeholder="Calories per 100 g/ml ">
+placeholder="Calories per 100 g/ml">
 </div>
 
-<div class="col-md-2">
+<div class="col-12 col-md-2">
 <button type="button"
 class="btn btn-success w-100"
 onclick="saveFood()">
@@ -85,17 +85,17 @@ Save
 
 <div class="row g-3 mb-4">
 
-<div class="col-md-6">
+<div class="col-12 col-md-6">
 <input type="number"
 id="qty"
-class="form-control form-control-lg"
-value="1">
+class="form-control"
+value="1" min="1">
 <input type="hidden" name="quantity" id="realQty">
 </div>
 
-<div class="col-md-6">
+<div class="col-12 col-md-6">
 <select id="unit"
-class="form-select form-select-lg">
+class="form-select">
 <option value="1">gram</option>
 <option value="100">100 gram</option>
 <option value="1000">kg</option>
@@ -115,22 +115,23 @@ class="form-select form-select-lg">
 <label class="form-label fw-semibold">Meal Type</label>
 
 <select name="meal_type"
-class="form-select form-select-lg mb-4">
+class="form-select mb-4">
 <option value="breakfast">Breakfast 🌅</option>
 <option value="lunch">Lunch ☀️</option>
 <option value="dinner">Dinner 🌙</option>
 <option value="snack">Snack 🍫</option>
 </select>
 
-<!-- CALORIES -->
-<div class="btn btn-outline-dark rounded-4 text-center p-3 fs-5 mb-4" >
-Estimated Calories:
-<strong class="text-primary">
-<span id="calories" class="text-primary">0</span> kcal
-</strong>
+<!-- CALORIES DISPLAY -->
+<div class="card text-center p-3 mb-4">
+    <small class="text-muted">Estimated Calories</small>
+    <h4 class="fw-bold text-primary mb-0">
+        <span id="calories">0</span> kcal
+    </h4>
 </div>
 
-<button class="btn btn-success btn-lg w-100 rounded-4 shadow">
+<!-- SUBMIT -->
+<button class="btn btn-success btn-lg w-100 shadow">
 Add Meal
 </button>
 
@@ -251,15 +252,15 @@ unit.innerHTML = `
 
 }
 
-else{
-
-unit.innerHTML = `
-<option value="1">gram</option>
-<option value="100">100 gram</option>
-<option value="1000">kg</option>
-`;
-
-}
+else {
+        // ✅ FIX: generic flexible units
+        unit.innerHTML = `
+        <option value="100">100 g</option>
+        <option value="250">bowl</option>
+        <option value="240">cup</option>
+        <option value="1">piece</option>
+        `;
+    }
 
 }
 
@@ -267,6 +268,9 @@ function calculateCalories(){
 
 let grams = (parseFloat(qty.value)||0) *
 (parseFloat(unit.value)||0);
+
+let q = Math.max(1, parseFloat(qty.value) || 1);
+qty.value = q;
 
 realQty.value = grams;
 
@@ -280,9 +284,7 @@ qty.addEventListener("input", calculateCalories);
 unit.addEventListener("change", calculateCalories);
 
 function showCustomFood(){
-
 document.getElementById("customFoodBox").style.display="block";
-
 }
 
 function saveFood(){
